@@ -5,6 +5,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private float maxInteractionRange;
+    [SerializeField] private LayerMask interactibleLayer;
 
     private void Update()
     {
@@ -16,7 +17,7 @@ public class PlayerInteraction : MonoBehaviour
         if (context.performed)
         {
             Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange, interactibleLayer);
             if(hit.collider != null)
             {
                 if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
