@@ -11,7 +11,6 @@ public class Tree : MonoBehaviour, IInteractible
         {
             inventory.Wood += 1;
             treeHealth--;
-            Debug.Log(inventory.Wood + " wood count");
             if (treeHealth <= 0) Destroy(gameObject);
         }
     }
