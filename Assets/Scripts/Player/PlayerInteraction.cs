@@ -5,18 +5,14 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private float maxInteractionRange;
+    [SerializeField] private LayerMask interactibleLayer;
 
-    private void Update()
-    {
-        Debug.DrawRay(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-    }
 
     public void LeftMouseClick(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange);
+            var hit = GetRaycastHit();
             if(hit.collider != null)
             {
                 if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
@@ -26,5 +22,14 @@ public class PlayerInteraction : MonoBehaviour
             }
 
         }
+    }
+
+
+    private RaycastHit2D GetRaycastHit()
+    {
+        Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange, interactibleLayer);
+
+        return hit;
     }
 }

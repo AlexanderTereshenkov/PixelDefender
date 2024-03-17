@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerSpeed;
     [SerializeField] private float lerpTime;
 
+
     private Rigidbody2D rigidBody;
     private Animator _animator;
     private Vector2 inputVector;
