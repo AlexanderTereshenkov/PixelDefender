@@ -143,3 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d23dd00f6dd054e86ea5ee773a38d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usableTool: Pickaxe
+  health: 7
