@@ -3,11 +3,12 @@ using UnityEngine;
 public class Tree : MonoBehaviour, IInteractible
 {
     //maybe create another abstract class InteractibleObject and do class inheritance
+    [SerializeField] private string usableTool;
     private int treeHealth = 5;
     private bool isPossibleToGet = false;
-    public void Action(Inventory inventory)
+    public void Action(Inventory inventory, string tool)
     {
-        if (isPossibleToGet)
+        if (isPossibleToGet && tool.Equals(usableTool))
         {
             inventory.Wood += 1;
             treeHealth--;

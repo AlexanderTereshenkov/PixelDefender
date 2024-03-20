@@ -6,9 +6,9 @@ public class Stone : MonoBehaviour, IInteractible
 {
     private int stoneHealth = 7;
     private bool isPossibleToGet = false;
-    public void Action(Inventory inventory)
+    public void Action(Inventory inventory, string tool)
     {
-        if (isPossibleToGet)
+        if (isPossibleToGet && tool == "Pickaxe")
         {
             stoneHealth-=1;
             if(stoneHealth <= 0)

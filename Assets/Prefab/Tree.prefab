@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9bffc42e0c0a46888245a7bcc8476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usableTool: Axe
