@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5509115001985893771}
   - component: {fileID: 7643932361632978049}
   - component: {fileID: 2329056823871748107}
+  - component: {fileID: 6446062460943350357}
   - component: {fileID: 2870998074299926254}
   - component: {fileID: 2512165087666448358}
   - component: {fileID: 6360624458938477083}
@@ -179,6 +180,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 33bab1b0-f456-45a8-b7af-960e5d791ba6
     m_ActionName: Player/MouseClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6446062460943350357}
+        m_TargetAssemblyTypeName: PlayerTool, Assembly-CSharp
+        m_MethodName: EButtonClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f5188f4a-f7cf-4159-b1fb-3cc9cca43f16
+    m_ActionName: Player/Tool[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -252,6 +269,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db08475fc4e36ec4794e46b991f66486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6446062460943350357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306034056301159806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281665cfb51693d4eaa2ceb0d5cc771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &2870998074299926254

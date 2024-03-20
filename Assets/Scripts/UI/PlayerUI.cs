@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviour
     {
         set
         {
-            woodText.text = "Камень: " + value.ToString();
+            stoneText.text = "Камень: " + value.ToString();
         }
     }
 
@@ -26,7 +26,7 @@ public class PlayerUI : MonoBehaviour
     {
         set
         {
-            woodText.text = "Железо: " + value.ToString();
+            ironText.text = "Железо: " + value.ToString();
         }
     }
 

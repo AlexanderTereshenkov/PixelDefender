@@ -7,6 +7,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float maxInteractionRange;
     [SerializeField] private LayerMask interactibleLayer;
 
+    private PlayerTool playerTool;
+
+    private void Start()
+    {
+        playerTool = GetComponent<PlayerTool>();
+    }
+
 
     public void LeftMouseClick(InputAction.CallbackContext context)
     {
@@ -17,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
                 {
-                    interactible.Action(inventory);
+                    interactible.Action(inventory, playerTool.GetTool());
                 }
             }
 
