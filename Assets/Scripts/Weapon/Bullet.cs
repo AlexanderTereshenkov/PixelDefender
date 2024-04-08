@@ -8,16 +8,23 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int damage;
     private Rigidbody2D rb;
+    private Transform target;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
      
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTarget(Transform _target)
     {
-        rb.velocity = Vector2.down * speed;
+        target = _target;
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (!target) return;
+        Vector2 direction = (target.position - transform.position).normalized;
+        rb.velocity = direction * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
