@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2870998074299926254}
   - component: {fileID: 2512165087666448358}
   - component: {fileID: 6360624458938477083}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -196,6 +196,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f5188f4a-f7cf-4159-b1fb-3cc9cca43f16
     m_ActionName: Player/Tool[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c2a72f4-14ca-4cfb-a000-a078cf4e92c3
+    m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
