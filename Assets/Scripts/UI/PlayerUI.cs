@@ -31,7 +31,7 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public string Timertext 
+    public string TimerText 
     {
         set
         {

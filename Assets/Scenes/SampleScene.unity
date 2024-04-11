@@ -9872,6 +9872,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 358068483}
+  - {fileID: 1461385117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1461385115
@@ -9904,9 +9905,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f13f7f3a881c4f4a8103f9416c8b450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minuteDuration: 1
+  minuteDuration: 0.001
   minutes: 0
   hours: 0
+  light2D: {fileID: 358068482}
   lightGradient:
     serializedVersion: 2
     key0: {r: 0.30154917, g: 0.2153079, b: 0.5943396, a: 1}
@@ -9945,12 +9947,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461385115}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1405835413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1461385118
 MonoBehaviour:
@@ -10451,4 +10453,3 @@ SceneRoots:
   - {fileID: 206552428}
   - {fileID: 1993213005}
   - {fileID: 1405835413}
-  - {fileID: 1461385117}

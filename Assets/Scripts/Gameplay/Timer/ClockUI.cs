@@ -22,6 +22,6 @@ public class ClockUI : MonoBehaviour
 
     private void UpdateTimerUI()
     {
-        playerUI.Timertext = worldTime.GetTime();
+        playerUI.TimerText = worldTime.GetTime();
     }
 }
