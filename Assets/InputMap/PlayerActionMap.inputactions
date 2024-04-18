@@ -25,12 +25,12 @@
                 },
                 {
                     "name": "Tool",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "f5188f4a-f7cf-4159-b1fb-3cc9cca43f16",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Attack",
@@ -111,17 +111,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8c710072-e7da-4930-991a-065058d234e3",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Tool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b59b938a-28a6-4c62-91f0-4806003e6383",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -130,6 +119,39 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "11a4a024-d7dc-43be-bd88-aa9dd2de501c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "4bc3d3e5-c38e-41c8-a854-20ff541b3e4b",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "28c3a8f0-8583-49fe-96ca-c37068cb538c",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
