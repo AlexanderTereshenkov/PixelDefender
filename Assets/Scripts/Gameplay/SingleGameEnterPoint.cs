@@ -11,6 +11,8 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private CameraMovement cameraMovement;
     [Header("UI")]
     [SerializeField] private PlayerUI playerUI;
+    [Header("PathManagment")]
+    [SerializeField] private EnemyPathManager enemyPathManager;
 
     private GameObject player;
 
@@ -39,5 +41,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     {
         return player;
     }
+
+    public EnemyPathManager GetEnemyPathManager() => enemyPathManager;
 
 }

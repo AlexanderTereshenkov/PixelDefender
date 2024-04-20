@@ -7,6 +7,7 @@ public class Tree : BreakableObject, IInteractible
         {
             inventory.Wood += 1;
             health--;
+            Instantiate(particles, particlesTransform);
             if (health <= 0) Destroy(gameObject);
         }
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726828785021414416}
   - component: {fileID: 7699967191771578478}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2870998074299926254}
   - component: {fileID: 2512165087666448358}
   - component: {fileID: 6360624458938477083}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
