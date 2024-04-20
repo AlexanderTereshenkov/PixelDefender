@@ -11,10 +11,14 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private CameraMovement cameraMovement;
     [Header("UI")]
     [SerializeField] private PlayerUI playerUI;
+    [Header("PathManagment")]
+    [SerializeField] private EnemyPathManager enemyPathManager;
+
+    private GameObject player;
 
     private void Awake()
     {
-        var player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
+        player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
 
         cameraMovement.transform.position = player.transform.position;
         cameraMovement.Target = player.transform;
@@ -32,5 +36,12 @@ public class SingleGameEnterPoint : MonoBehaviour
     {
         return playerUI;
     }
+
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
+    public EnemyPathManager GetEnemyPathManager() => enemyPathManager;
 
 }

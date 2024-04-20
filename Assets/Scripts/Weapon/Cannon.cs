@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPoint;
@@ -15,13 +15,9 @@ public class Cannon : MonoBehaviour
     [SerializeField] private float timeToShoot;
     private float tempSeconds;
     private Transform target;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {       
         if (target == null)
         {
