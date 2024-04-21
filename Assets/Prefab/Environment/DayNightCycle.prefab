@@ -79,6 +79,8 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
+  startWaveHour: 21
+  stopWaveHour: 6
 --- !u!114 &4722543934577071648
 MonoBehaviour:
   m_ObjectHideFlags: 0

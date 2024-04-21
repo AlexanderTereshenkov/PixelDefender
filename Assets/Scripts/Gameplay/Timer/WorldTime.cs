@@ -17,9 +17,15 @@ public class WorldTime : MonoBehaviour
 
     [SerializeField] private Gradient lightGradient;
 
+    [SerializeField] private int startWaveHour;
+    [SerializeField] private int stopWaveHour;
+
     private float tempSeconds;
+    private bool isWaveStarted = false;
 
     public event Action OnTimeChaged;
+    public event Action StartEnemyWave;
+    public event Action StopEnemyWave;
 
     private void Start()
     {
@@ -56,6 +62,25 @@ public class WorldTime : MonoBehaviour
         }
 
         hours %= 24;
+
+        if(hours == startWaveHour)
+        {
+            if (!isWaveStarted)
+            {
+                Debug.Log("GO");
+                StartEnemyWave?.Invoke();
+                isWaveStarted = true;
+            }
+        }
+        else if(hours == stopWaveHour)
+        {
+            if (isWaveStarted)
+            {
+                StopEnemyWave?.Invoke();
+                isWaveStarted = false;
+                Debug.Log("STOP");
+            }
+        }
 
         OnTimeChaged?.Invoke();
     }
