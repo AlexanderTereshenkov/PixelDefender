@@ -52,7 +52,11 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            MobSpapwner.onEnemyDestroy?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
 }
