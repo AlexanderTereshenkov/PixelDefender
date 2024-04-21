@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private Rigidbody2D rigidBody;
     private GameObject player;
 
+
     //path
     private int index = 0;
     private Transform[] path;

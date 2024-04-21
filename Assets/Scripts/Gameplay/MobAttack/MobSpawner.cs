@@ -12,7 +12,7 @@ public class MobSpapwner : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private int enemyNumber = 8;
-    [SerializeField] private float enemyPerSecond = 0.5f;
+    [SerializeField] private float enemyPerSecond = 1f;
     [SerializeField] private float timeBetweenWaves = 10f;
     [SerializeField] private float difficultyScallingFactor = 0.75f;
 
@@ -25,16 +25,26 @@ public class MobSpapwner : MonoBehaviour
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
 
+
     private void Awake()
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(StartWave());
+        worldTime.StartEnemyWave += StartWave;
+        worldTime.StopEnemyWave += EndWave;
+
     }
-    
+
+    private void OnDisable()
+    {
+        worldTime.StartEnemyWave -= StartWave;
+        worldTime.StopEnemyWave -= EndWave;
+
+    }
+
     void Update()
     {
         if (!isSpawning) return;
@@ -60,9 +70,9 @@ public class MobSpapwner : MonoBehaviour
         enemiesAlive--;
     }
 
-    private IEnumerator StartWave()
+    private void StartWave()
     {
-        yield return new WaitForSeconds(timeBetweenWaves);
+        //yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
     }
@@ -72,7 +82,6 @@ public class MobSpapwner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;
-        StartCoroutine(StartWave());
     }
 
     private void SpawnEnemy()
