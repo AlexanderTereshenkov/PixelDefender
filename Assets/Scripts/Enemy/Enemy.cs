@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private Rigidbody2D rigidBody;
     private GameObject player;
 
+
     //path
     private int index = 0;
     private Transform[] path;
@@ -52,7 +53,11 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            MobSpapwner.onEnemyDestroy?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
 }
