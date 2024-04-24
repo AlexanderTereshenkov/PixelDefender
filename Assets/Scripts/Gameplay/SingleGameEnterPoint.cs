@@ -13,6 +13,10 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private PlayerUI playerUI;
     [Header("PathManagment")]
     [SerializeField] private EnemyPathManager enemyPathManager;
+    [Header("End Point")]
+    [SerializeField] private Transform[] endPoints;
+    [Header("Gameplay")]
+    [SerializeField] private MainWall mainWall;
 
     private GameObject player;
 
@@ -43,5 +47,9 @@ public class SingleGameEnterPoint : MonoBehaviour
     }
 
     public EnemyPathManager GetEnemyPathManager() => enemyPathManager;
+
+    public Transform GetRandomPoint() => endPoints[Random.RandomRange(0, endPoints.Length)];
+
+    public MainWall GetMainWall() => mainWall;
 
 }

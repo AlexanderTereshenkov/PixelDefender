@@ -129,10 +129,12 @@ MonoBehaviour:
   speed: 3
   health: 50
   viewDistance: 0
+  damage: 3
   playerMask:
     serializedVersion: 2
     m_Bits: 0
   raycastStartPoint: {fileID: 0}
+  coolDown: 1
 --- !u!58 &2216094099941767500
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class BreakableObject : MonoBehaviour
 {
     [SerializeField] internal string usableTool;
-    [SerializeField] internal int health;
+    [SerializeField] internal float health;
     [SerializeField] internal GameObject particles;
     [SerializeField] internal Transform particlesTransform;
 
