@@ -8,7 +8,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask interactibleLayer;
 
     private PlayerTool playerTool;
-    private PlayerAttack playerAttack;
 
     private void Start()
     {
@@ -25,9 +24,9 @@ public class PlayerInteraction : MonoBehaviour
                 var hit = GetRaycastHit();
                 if (hit.collider != null)
                 {
-                    if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
+                    if (hit.collider.gameObject.TryGetComponent(out IBreakable breakable))
                     {
-                        interactible.Action(inventory, playerTool.GetTool());
+                        breakable.Action(inventory, playerTool.GetTool());
                     }
                 }
             }
@@ -36,7 +35,17 @@ public class PlayerInteraction : MonoBehaviour
 
     public void InteractibleobjectsAction(InputAction.CallbackContext context)
     {
-
+        if (context.performed)
+        {
+            var hit = GetRaycastHit();
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
+                {
+                    interactible.Action(inventory);
+                }
+            }
+        }
     }
 
 

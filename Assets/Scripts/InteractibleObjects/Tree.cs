@@ -1,5 +1,5 @@
 
-public class Tree : BreakableObject, IInteractible
+public class Tree : BreakableObject, IBreakable
 {
     public void Action(Inventory inventory, string tool)
     {

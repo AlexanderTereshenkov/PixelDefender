@@ -20,10 +20,13 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private GameplayHandler gameplayHandler;
 
     private GameObject player;
+    private Inventory playerInventory;
 
     private void Awake()
     {
         player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
+
+        playerInventory = player.GetComponent<Inventory>();
 
         cameraMovement.transform.position = player.transform.position;
         cameraMovement.Target = player.transform;
@@ -55,4 +58,5 @@ public class SingleGameEnterPoint : MonoBehaviour
 
     public GameplayHandler GetGameplayHandler() => gameplayHandler;
 
+    public Inventory GetPlayerInventory() => playerInventory;
 }

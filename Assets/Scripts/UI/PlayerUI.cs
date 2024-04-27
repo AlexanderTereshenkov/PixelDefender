@@ -8,6 +8,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ironText;
     [SerializeField] private TextMeshProUGUI ironIngotText;
     [SerializeField] private TextMeshProUGUI timerText;
+
+    [Header("Screen")]
+    [SerializeField] private FurnacePlayerInteraction furnaceDialogScreen;
     public int WoodText 
     { 
         set
@@ -47,5 +50,7 @@ public class PlayerUI : MonoBehaviour
             timerText.text = value;
         }
     }
+
+    public FurnacePlayerInteraction GetFurnanceDialogScreen() => furnaceDialogScreen;
 
 }

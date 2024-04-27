@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Iron : BreakableObject, IInteractible
+public class Iron : BreakableObject, IBreakable
 {
     public void Action(Inventory inventory, string tool)
     {
