@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPausable
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float lerpTime;
@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Vector2 inputVector;
     private Vector2 lerpInputVector;
+    private bool isPaused = false;
 
     private void Awake()
     {
@@ -31,6 +32,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void GetInputVector(InputAction.CallbackContext context)
     {
+        if(isPaused) return; 
         inputVector = context.ReadValue<Vector2>();
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
     }
 }

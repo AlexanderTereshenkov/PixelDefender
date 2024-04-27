@@ -6,6 +6,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI woodText;
     [SerializeField] private TextMeshProUGUI stoneText;
     [SerializeField] private TextMeshProUGUI ironText;
+    [SerializeField] private TextMeshProUGUI ironIngotText;
     [SerializeField] private TextMeshProUGUI timerText;
     public int WoodText 
     { 
@@ -28,6 +29,14 @@ public class PlayerUI : MonoBehaviour
         set
         {
             ironText.text = "Железо: " + value.ToString();
+        }
+    }
+
+    public int IronIngotText
+    {
+        set
+        {
+            ironIngotText.text = "Слитки: " + value.ToString();
         }
     }
 

@@ -17,6 +17,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private Transform[] endPoints;
     [Header("Gameplay")]
     [SerializeField] private MainWall mainWall;
+    [SerializeField] private GameplayHandler gameplayHandler;
 
     private GameObject player;
 
@@ -51,5 +52,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     public Transform GetRandomPoint() => endPoints[Random.RandomRange(0, endPoints.Length)];
 
     public MainWall GetMainWall() => mainWall;
+
+    public GameplayHandler GetGameplayHandler() => gameplayHandler;
 
 }

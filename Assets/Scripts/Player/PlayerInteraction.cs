@@ -34,6 +34,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void InteractibleobjectsAction(InputAction.CallbackContext context)
+    {
+
+    }
+
 
     private RaycastHit2D GetRaycastHit()
     {

@@ -1,14 +1,19 @@
-using UnityEngine;
+using System;
 
 public class MainWall : BreakableObject
 {
+    private bool isBroken = false;
+
+    public event Action OnWallBroken;
 
     public void AttackWall(float damage)
     {
+        if (isBroken) return;
         health -= damage;
         if(health <= 0)
         {
-            Destroy(gameObject);
+            OnWallBroken?.Invoke();
+            isBroken = true;
         }
     }
 }
