@@ -1,20 +1,25 @@
+using System;
 using UnityEngine;
 
 public class Furnace : InteractibleObject, IInteractible
 {
     [SerializeField] private string status = "";
     [SerializeField] private float onePieceTime = 10;
+    [SerializeField] private Sprite fireFurnace;
+    [SerializeField] private Sprite defaultFurnace;
     private FurnacePlayerInteraction furnacePlayerInteraction;
     private Inventory playerInventory;
     private bool isWorking;
     private float ironOre;
     private float tempTime;
     private float resultIronIngot;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         furnacePlayerInteraction = SingleGameEnterPoint.instance.GetPlayerUI().GetFurnanceDialogScreen();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = defaultFurnace;
         playerInventory = SingleGameEnterPoint.instance.GetPlayerInventory();
     }
 
@@ -31,6 +36,7 @@ public class Furnace : InteractibleObject, IInteractible
                 isWorking = false;
                 status = "Готово!";
                 furnacePlayerInteraction.UpdateStatusText(status);
+                spriteRenderer.sprite = defaultFurnace;
             }
         }
     }
@@ -52,11 +58,14 @@ public class Furnace : InteractibleObject, IInteractible
             CancelAction();
             return;
         }
+        float iron = playerIron < wishfulIronCount ? playerIron : wishfulIronCount;
         if(playerIron <= wishfulIronCount)
         {
-            ironOre = playerIron;
+            ironOre = iron;
+            playerInventory.Iron = Convert.ToInt32(playerIron - iron);
             isWorking = true;
             status = "В процессе";
+            spriteRenderer.sprite = fireFurnace;
             furnacePlayerInteraction.UpdateStatusText(status);
         }
     }
