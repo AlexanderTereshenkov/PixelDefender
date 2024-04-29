@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
                 playerUI.IronText = value;
                 break;
             case 3:
-                playerUI.IronText = value;
+                playerUI.IronIngotText = value;
                 break;
 
         }

@@ -10,6 +10,7 @@ public class Furnace : InteractibleObject, IInteractible
     private FurnacePlayerInteraction furnacePlayerInteraction;
     private Inventory playerInventory;
     private bool isWorking;
+    private bool isDone;
     private float ironOre;
     private float tempTime;
     private float resultIronIngot;
@@ -35,8 +36,11 @@ public class Furnace : InteractibleObject, IInteractible
             {
                 isWorking = false;
                 status = "Готово!";
+                isDone = true;
+                furnacePlayerInteraction.ShowAddButton();
                 furnacePlayerInteraction.UpdateStatusText(status);
                 spriteRenderer.sprite = defaultFurnace;
+                resultIronIngot = 0;
             }
         }
     }
@@ -44,9 +48,10 @@ public class Furnace : InteractibleObject, IInteractible
 
     public void Action(Inventory inventory)
     {
-        furnacePlayerInteraction.OpenWindow(status);
+        furnacePlayerInteraction.OpenWindow(status, isDone);
         furnacePlayerInteraction.OnAcceptButtonPressed += BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed += CancelAction;
+        furnacePlayerInteraction.OnTakeResourcesButtonPressed += AddIngotsToInventory;
     }
 
     private void BeginAction()
@@ -59,15 +64,12 @@ public class Furnace : InteractibleObject, IInteractible
             return;
         }
         float iron = playerIron < wishfulIronCount ? playerIron : wishfulIronCount;
-        if(playerIron <= wishfulIronCount)
-        {
-            ironOre = iron;
-            playerInventory.Iron = Convert.ToInt32(playerIron - iron);
-            isWorking = true;
-            status = "В процессе";
-            spriteRenderer.sprite = fireFurnace;
-            furnacePlayerInteraction.UpdateStatusText(status);
-        }
+        ironOre = iron;
+        playerInventory.Iron = Convert.ToInt32(playerIron - iron);
+        isWorking = true;
+        status = "В процессе";
+        spriteRenderer.sprite = fireFurnace;
+        furnacePlayerInteraction.UpdateStatusText(status);
     }
 
     private void CancelAction()
@@ -75,5 +77,17 @@ public class Furnace : InteractibleObject, IInteractible
         furnacePlayerInteraction.CloseWindow();
         furnacePlayerInteraction.OnAcceptButtonPressed -= BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed -= CancelAction;
+        furnacePlayerInteraction.OnTakeResourcesButtonPressed -= AddIngotsToInventory;
+    }
+
+    private void AddIngotsToInventory()
+    {
+        int tempIngots = playerInventory.IronIngot;
+        playerInventory.IronIngot = tempIngots + Convert.ToInt32(ironOre);
+        ironOre = 0;
+        isDone = false;
+        furnacePlayerInteraction.HideAddButton();
+        status = "";
+        furnacePlayerInteraction.UpdateStatusText(status);
     }
 }

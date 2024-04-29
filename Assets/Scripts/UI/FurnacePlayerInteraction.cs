@@ -9,10 +9,12 @@ public class FurnacePlayerInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button acceptButton;
     [SerializeField] private Button cancelButton;
+    [SerializeField] private Button takeResourcesButton;
     [SerializeField] private Slider slider;
 
     public event Action OnAcceptButtonPressed;
     public event Action OnCancelButtonPressed;
+    public event Action OnTakeResourcesButtonPressed;
 
     public float SliderValue
     {
@@ -26,11 +28,20 @@ public class FurnacePlayerInteraction : MonoBehaviour
     {
         acceptButton.onClick.AddListener(AcceptButtonPress);
         cancelButton.onClick.AddListener(CancelButtonPress);
+        takeResourcesButton.onClick.AddListener(AddResourcesButtonPress);
     }
 
-    public void OpenWindow(string txt)
+    public void OpenWindow(string txt, bool isDone)
     {
         if (screen.activeInHierarchy) return;
+        if (isDone)
+        {
+            ShowAddButton();
+        }
+        else
+        {
+            HideAddButton();
+        }
         screen.SetActive(true);
         text.text = txt;
     }
@@ -38,11 +49,22 @@ public class FurnacePlayerInteraction : MonoBehaviour
     public void CloseWindow()
     {
         screen.SetActive(false);
+        HideAddButton();
     }
 
     public void UpdateStatusText(string txt)
     {
         text.text = txt;
+    }
+
+    public void ShowAddButton()
+    {
+        takeResourcesButton.gameObject.SetActive(true);
+    }
+
+    public void HideAddButton()
+    {
+        takeResourcesButton.gameObject.SetActive(false);
     }
 
     private void AcceptButtonPress()
@@ -53,5 +75,10 @@ public class FurnacePlayerInteraction : MonoBehaviour
     private void CancelButtonPress()
     {
         OnCancelButtonPressed?.Invoke(); 
+    }
+
+    private void AddResourcesButtonPress()
+    {
+        OnTakeResourcesButtonPressed?.Invoke();
     }
 }
