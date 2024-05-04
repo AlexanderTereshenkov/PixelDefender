@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerTool : MonoBehaviour
 {
-    string[] tools = { "Pickaxe", "Axe", "Sword" };
-    int index = 0;
+    private string[] tools = { "Pickaxe", "Axe", "Sword" };
+    private int index = 0;
     public void ChooseTool(InputAction.CallbackContext context)
     {
         if (context.performed)
