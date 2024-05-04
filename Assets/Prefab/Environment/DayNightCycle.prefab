@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4785905466137852809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5210194365561008812}
+  - component: {fileID: 2838165954504697075}
+  - component: {fileID: 4722543934577071648}
+  m_Layer: 0
+  m_Name: DayNightCycle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5210194365561008812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785905466137852809}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2838165954504697075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785905466137852809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f13f7f3a881c4f4a8103f9416c8b450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minuteDuration: 1
+  minutes: 0
+  hours: 8
+  light2D: {fileID: 0}
+  lightGradient:
+    serializedVersion: 2
+    key0: {r: 0.30154917, g: 0.2153079, b: 0.5943396, a: 1}
+    key1: {r: 0.3019608, g: 0.21568628, b: 0.59607846, a: 1}
+    key2: {r: 0.9716981, g: 0.9024123, b: 0.7278569, a: 0}
+    key3: {r: 1, g: 0.9984277, b: 0.99433964, a: 0}
+    key4: {r: 1, g: 0.5601671, b: 0.40943396, a: 0}
+    key5: {r: 0.3019608, g: 0.21568628, b: 0.59607846, a: 0}
+    key6: {r: 0.3019608, g: 0.21568628, b: 0.59607846, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 8288
+    ctime2: 15420
+    ctime3: 37394
+    ctime4: 46260
+    ctime5: 57054
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  startWaveHour: 21
+  stopWaveHour: 6
+--- !u!114 &4722543934577071648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785905466137852809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0351b117fc796054097fa3f03e56527c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldTime: {fileID: 2838165954504697075}

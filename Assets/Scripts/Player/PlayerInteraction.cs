@@ -5,26 +5,41 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private float maxInteractionRange;
+    [SerializeField] private LayerMask interactibleLayer;
 
-    private void Update()
+    private PlayerTool playerTool;
+    private PlayerAttack playerAttack;
+
+    private void Start()
     {
-        Debug.DrawRay(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        playerTool = GetComponent<PlayerTool>();
     }
+
 
     public void LeftMouseClick(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if(playerTool.GetTool() != "Sword")
         {
-            Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange);
-            if(hit.collider != null)
+            if (context.performed)
             {
-                if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
+                var hit = GetRaycastHit();
+                if (hit.collider != null)
                 {
-                    interactible.Action(inventory);
+                    if (hit.collider.gameObject.TryGetComponent(out IInteractible interactible))
+                    {
+                        interactible.Action(inventory, playerTool.GetTool());
+                    }
                 }
             }
-
         }
+    }
+
+
+    private RaycastHit2D GetRaycastHit()
+    {
+        Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange, interactibleLayer);
+
+        return hit;
     }
 }
