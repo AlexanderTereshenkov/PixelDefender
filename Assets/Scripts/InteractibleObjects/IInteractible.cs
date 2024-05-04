@@ -1,5 +1,4 @@
-
 public interface IInteractible
 {
-    public void Action(Inventory inventory, string tool);
+    public void Action(Inventory inventory);
 }

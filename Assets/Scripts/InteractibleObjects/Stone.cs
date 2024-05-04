@@ -1,5 +1,5 @@
 
-public class Stone : BreakableObject, IInteractible
+public class Stone : BreakableObject, IBreakable
 {
     public void Action(Inventory inventory, string tool)
     {
