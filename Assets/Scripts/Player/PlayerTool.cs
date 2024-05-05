@@ -1,10 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerTool : MonoBehaviour
 {
+
+    [SerializeField] private Sprite[] toolIcons;
+
     private string[] tools = { "Pickaxe", "Axe", "Sword" };
     private int index = 0;
+    private Image toolIconPlace;
+
+    private void Start()
+    {
+        toolIconPlace = SingleGameEnterPoint.instance.GetPlayerUI().GetIconPlace();
+        toolIconPlace.sprite = toolIcons[index];
+    }
     public void ChooseTool(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -13,7 +24,7 @@ public class PlayerTool : MonoBehaviour
             index += value;
             if (index < 0) index = tools.Length - 1;
             index %= tools.Length;
-            Debug.Log(tools[index]);
+            toolIconPlace.sprite = toolIcons[index];
         }
     }
 

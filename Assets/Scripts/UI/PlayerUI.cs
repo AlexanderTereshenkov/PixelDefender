@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerUI : MonoBehaviour
 
     [Header("Screen")]
     [SerializeField] private FurnacePlayerInteraction furnaceDialogScreen;
+    [SerializeField] private Image iconPlace;
     public int WoodText 
     { 
         set
@@ -52,5 +54,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     public FurnacePlayerInteraction GetFurnanceDialogScreen() => furnaceDialogScreen;
+
+    public Image GetIconPlace() => iconPlace;
 
 }
