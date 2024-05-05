@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private MainWall mainWall;
     private bool isPathEnded = false;
     private float attackCoolDown;
+    private bool isDestroyed=false;
 
     private void Start()
     {
@@ -76,9 +77,10 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !isDestroyed)
         {
             MobSpapwner.onEnemyDestroy?.Invoke();
+            isDestroyed = true;
             Destroy(gameObject);
         }
     }
