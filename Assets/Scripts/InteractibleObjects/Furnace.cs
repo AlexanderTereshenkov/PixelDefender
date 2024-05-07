@@ -35,7 +35,7 @@ public class Furnace : InteractibleObject, IInteractible
             if(resultIronIngot == ironOre)
             {
                 isWorking = false;
-                status = "Готово!";
+                status = "Готово! Забрать " + ironOre.ToString() + " слитков";
                 isDone = true;
                 furnacePlayerInteraction.ShowAddButton();
                 furnacePlayerInteraction.UpdateStatusText(status);
@@ -56,6 +56,7 @@ public class Furnace : InteractibleObject, IInteractible
 
     private void BeginAction()
     {
+        if (isDone) return;
         float wishfulIronCount = furnacePlayerInteraction.SliderValue;
         float playerIron = playerInventory.Iron;
         if (wishfulIronCount <= 0 || playerIron <= 0)
@@ -82,8 +83,7 @@ public class Furnace : InteractibleObject, IInteractible
 
     private void AddIngotsToInventory()
     {
-        int tempIngots = playerInventory.IronIngot;
-        playerInventory.IronIngot = tempIngots + Convert.ToInt32(ironOre);
+        playerInventory.IronIngot += Convert.ToInt32(ironOre);
         ironOre = 0;
         isDone = false;
         furnacePlayerInteraction.HideAddButton();
