@@ -7,9 +7,10 @@ public class Iron : BreakableObject, IBreakable
         if (isPossibleToGet && tool.Equals(usableTool))
         {   
             health -= Random.Range(1, 4);
+            Instantiate(particles, particlesTransform);
             if (health <= 0)
             {
-                inventory.Iron += 1;
+                inventory.Iron += Random.Range(1, 4);
                 Destroy(gameObject);
             }
         }

@@ -9,6 +9,11 @@ public abstract class BreakableObject : MonoBehaviour
 
      internal bool isPossibleToGet = false;
 
+    private void Start()
+    {
+        health = Random.Range(1, health);
+    }
+
     private void OnMouseEnter()
     {
         isPossibleToGet = true;

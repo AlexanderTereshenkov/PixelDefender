@@ -18,12 +18,15 @@ public class SingleGameEnterPoint : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] private MainWall mainWall;
     [SerializeField] private GameplayHandler gameplayHandler;
+    [SerializeField] private WorldTime worldTime;
 
     private GameObject player;
     private Inventory playerInventory;
 
     private void Awake()
     {
+        Time.timeScale = 1;
+
         player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
 
         playerInventory = player.GetComponent<Inventory>();
@@ -52,11 +55,13 @@ public class SingleGameEnterPoint : MonoBehaviour
 
     public EnemyPathManager GetEnemyPathManager() => enemyPathManager;
 
-    public Transform GetRandomPoint() => endPoints[Random.RandomRange(0, endPoints.Length)];
+    public Transform GetRandomPoint() => endPoints[Random.Range(0, endPoints.Length)];
 
     public MainWall GetMainWall() => mainWall;
 
     public GameplayHandler GetGameplayHandler() => gameplayHandler;
 
     public Inventory GetPlayerInventory() => playerInventory;
+
+    public WorldTime GetWorldTime() => worldTime;
 }
