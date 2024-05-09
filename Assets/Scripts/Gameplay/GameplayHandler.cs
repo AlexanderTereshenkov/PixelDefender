@@ -9,9 +9,11 @@ public class GameplayHandler : MonoBehaviour
     private MainWall mainWall;
     private List<IPausable> pausableList = new List<IPausable>();
     private InputActionMap playerMap;
+    private InputActionMap systemButtonsMap;
     private SingleGameEnterPoint singleGameEnterPoint;
 
     public event Action<bool> PauseStatusChanged;
+    public event Action OnGameEnded;
 
     public bool IsGameFinished { get; set; }
 
@@ -20,6 +22,7 @@ public class GameplayHandler : MonoBehaviour
         singleGameEnterPoint = SingleGameEnterPoint.instance;
         mainWall = singleGameEnterPoint.GetMainWall();
         playerMap = singleGameEnterPoint.GetActionMap("Player");
+        systemButtonsMap = singleGameEnterPoint.GetActionMap("SystemButtons");
         mainWall.OnWallBroken += Loose;
         singleGameEnterPoint.GetWorldTime().OnDayPassed += IncreaseDay;
     }
@@ -55,6 +58,7 @@ public class GameplayHandler : MonoBehaviour
         Time.timeScale = 0;
         PauseStatusChanged?.Invoke(true);
         playerMap.Disable();
+        systemButtonsMap.Enable();
     }
 
     public void Resume()
@@ -66,18 +70,20 @@ public class GameplayHandler : MonoBehaviour
         Time.timeScale = 1;
         PauseStatusChanged?.Invoke(false);
         playerMap.Enable();
+        systemButtonsMap.Disable();
     }
 
     private void Loose()
     {
-        Debug.Log("You loose this game!");
         IsGameFinished = true;
         Time.timeScale = 0;
+        OnGameEnded?.Invoke();
     }
 
     private void Win()
     {
-
+        IsGameFinished = true;
+        Time.timeScale = 0;
     }
 
     private void IncreaseDay()

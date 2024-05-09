@@ -10,11 +10,13 @@ public class PlayerInteraction : MonoBehaviour, IPausablePlayer
     private PlayerTool playerTool;
     private GameplayHandler gameplayHandler;
     private bool isPaused = false;
+    private PlayerInput playerInput;
 
     private void Start()
     {
         playerTool = GetComponent<PlayerTool>();
         gameplayHandler = SingleGameEnterPoint.instance.GetGameplayHandler();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     public void LeftMouseClick(InputAction.CallbackContext context)
@@ -62,11 +64,13 @@ public class PlayerInteraction : MonoBehaviour, IPausablePlayer
                 {
                     gameplayHandler.Resume();
                     isPaused = false;
+                    playerInput.defaultActionMap = "Player";
                 }
                 else
                 {
                     gameplayHandler.Pause();
                     isPaused = true;
+                    playerInput.defaultActionMap = "SystemButtons";
                 }
             }
 

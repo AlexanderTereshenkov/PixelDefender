@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     [Header("Screen")]
     [SerializeField] private FurnacePlayerInteraction furnaceDialogScreen;
     [SerializeField] private Image iconPlace;
+
     public int WoodText 
     { 
         set

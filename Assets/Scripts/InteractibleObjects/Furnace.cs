@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
 public class Furnace : InteractibleObject, IInteractible
@@ -18,6 +19,9 @@ public class Furnace : InteractibleObject, IInteractible
     private float resultIronIngot;
     private SpriteRenderer spriteRenderer;
     private Sprite defaultFurnace;
+    private InputActionMap playerMap;
+    private InputActionMap systemMap;
+    private PlayerInput playerInput;
 
     private void Start()
     {
@@ -25,6 +29,9 @@ public class Furnace : InteractibleObject, IInteractible
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultFurnace = spriteRenderer.sprite;
         playerInventory = SingleGameEnterPoint.instance.GetPlayerInventory();
+        playerMap = SingleGameEnterPoint.instance.GetActionMap("Player");
+        systemMap = SingleGameEnterPoint.instance.GetActionMap("SystemButtons");
+        playerInput = SingleGameEnterPoint.instance.GetPlayer().GetComponent<PlayerInput>();
         fireLight.intensity = 0;
     }
 
@@ -54,7 +61,9 @@ public class Furnace : InteractibleObject, IInteractible
     public void Action(Inventory inventory)
     {
         furnacePlayerInteraction.OpenWindow(status, isDone);
-        SingleGameEnterPoint.instance.GetActionMap("Player").Disable();
+        playerMap.Disable();
+        systemMap.Enable();
+        playerInput.defaultActionMap = "SystemButtons";
         furnacePlayerInteraction.OnAcceptButtonPressed += BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed += CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed += AddIngotsToInventory;
@@ -83,7 +92,9 @@ public class Furnace : InteractibleObject, IInteractible
     private void CancelAction()
     {
         furnacePlayerInteraction.CloseWindow();
-        SingleGameEnterPoint.instance.GetActionMap("Player").Enable();
+        playerMap.Enable();
+        systemMap.Disable();
+        playerInput.defaultActionMap = "Player";
         furnacePlayerInteraction.OnAcceptButtonPressed -= BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed -= CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed -= AddIngotsToInventory;
