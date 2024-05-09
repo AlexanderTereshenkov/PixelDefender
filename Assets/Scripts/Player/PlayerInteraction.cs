@@ -56,7 +56,7 @@ public class PlayerInteraction : MonoBehaviour, IPausablePlayer
     {
         if (context.performed)
         {
-            if(gameplayHandler != null)
+            if(gameplayHandler != null && !gameplayHandler.IsGameFinished)
             {
                 if (isPaused)
                 {

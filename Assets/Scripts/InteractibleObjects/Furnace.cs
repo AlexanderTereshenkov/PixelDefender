@@ -54,6 +54,7 @@ public class Furnace : InteractibleObject, IInteractible
     public void Action(Inventory inventory)
     {
         furnacePlayerInteraction.OpenWindow(status, isDone);
+        SingleGameEnterPoint.instance.GetActionMap("Player").Disable();
         furnacePlayerInteraction.OnAcceptButtonPressed += BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed += CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed += AddIngotsToInventory;
@@ -82,6 +83,7 @@ public class Furnace : InteractibleObject, IInteractible
     private void CancelAction()
     {
         furnacePlayerInteraction.CloseWindow();
+        SingleGameEnterPoint.instance.GetActionMap("Player").Enable();
         furnacePlayerInteraction.OnAcceptButtonPressed -= BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed -= CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed -= AddIngotsToInventory;

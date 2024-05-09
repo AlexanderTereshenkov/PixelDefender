@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SingleGameEnterPoint : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class SingleGameEnterPoint : MonoBehaviour
     [Header("Player")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform playerSpawnPosition;
+    [SerializeField] private InputActionAsset inputActionAsset;
+
     [Header("Camera")]
     [SerializeField] private CameraMovement cameraMovement;
     [Header("UI")]
@@ -64,4 +67,6 @@ public class SingleGameEnterPoint : MonoBehaviour
     public Inventory GetPlayerInventory() => playerInventory;
 
     public WorldTime GetWorldTime() => worldTime;
+
+    public InputActionMap GetActionMap(string name) => inputActionAsset.FindActionMap(name);
 }

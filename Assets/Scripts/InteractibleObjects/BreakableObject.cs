@@ -11,7 +11,7 @@ public abstract class BreakableObject : MonoBehaviour
 
     private void Start()
     {
-        health = Random.Range(1, health);
+        health = Random.Range(health, health + 10);
     }
 
     private void OnMouseEnter()

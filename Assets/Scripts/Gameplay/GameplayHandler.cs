@@ -1,21 +1,27 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameplayHandler : MonoBehaviour
 {
     private int daysCount;
     private MainWall mainWall;
-
     private List<IPausable> pausableList = new List<IPausable>();
+    private InputActionMap playerMap;
+    private SingleGameEnterPoint singleGameEnterPoint;
 
     public event Action<bool> PauseStatusChanged;
 
+    public bool IsGameFinished { get; set; }
+
     private void Start()
     {
-        mainWall = SingleGameEnterPoint.instance.GetMainWall();
+        singleGameEnterPoint = SingleGameEnterPoint.instance;
+        mainWall = singleGameEnterPoint.GetMainWall();
+        playerMap = singleGameEnterPoint.GetActionMap("Player");
         mainWall.OnWallBroken += Loose;
-        SingleGameEnterPoint.instance.GetWorldTime().OnDayPassed += IncreaseDay;
+        singleGameEnterPoint.GetWorldTime().OnDayPassed += IncreaseDay;
     }
     private void OnEnable()
     {
@@ -27,7 +33,7 @@ public class GameplayHandler : MonoBehaviour
     private void OnDisable()
     {
         mainWall.OnWallBroken -= Loose;
-        SingleGameEnterPoint.instance.GetWorldTime().OnDayPassed -= IncreaseDay;
+        singleGameEnterPoint.GetWorldTime().OnDayPassed -= IncreaseDay;
     }
 
     public void RegisterPausableobject(IPausable pausable)
@@ -48,6 +54,7 @@ public class GameplayHandler : MonoBehaviour
         }
         Time.timeScale = 0;
         PauseStatusChanged?.Invoke(true);
+        playerMap.Disable();
     }
 
     public void Resume()
@@ -58,11 +65,13 @@ public class GameplayHandler : MonoBehaviour
         }
         Time.timeScale = 1;
         PauseStatusChanged?.Invoke(false);
+        playerMap.Enable();
     }
 
     private void Loose()
     {
         Debug.Log("You loose this game!");
+        IsGameFinished = true;
         Time.timeScale = 0;
     }
 
