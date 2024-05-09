@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usableTool: Axe
-  health: 5
+  health: 15
   particles: {fileID: 8912153612763053740, guid: 948f90f87f6a48546b03af59a4fe45f4, type: 3}
   particlesTransform: {fileID: 7064214703343080084}

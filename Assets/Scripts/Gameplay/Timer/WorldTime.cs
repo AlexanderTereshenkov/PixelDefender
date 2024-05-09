@@ -22,10 +22,12 @@ public class WorldTime : MonoBehaviour
 
     private float tempSeconds;
     private bool isWaveStarted = false;
+    private int daysHour;
 
     public event Action OnTimeChaged;
     public event Action StartEnemyWave;
     public event Action StopEnemyWave;
+    public event Action OnDayPassed;
 
     private void Start()
     {
@@ -80,6 +82,7 @@ public class WorldTime : MonoBehaviour
                 isWaveStarted = false;
                 Debug.Log("STOP");
             }
+            OnDayPassed?.Invoke();
         }
 
         OnTimeChaged?.Invoke();

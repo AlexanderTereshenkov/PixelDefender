@@ -2,13 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PlayerTool : MonoBehaviour
+public class PlayerTool : MonoBehaviour, IPausablePlayer
 {
 
     [SerializeField] private Sprite[] toolIcons;
 
     private string[] tools = { "Pickaxe", "Axe", "Sword" };
     private int index = 0;
+    private bool isPaused;
     private Image toolIconPlace;
 
     private void Start()
@@ -18,6 +19,10 @@ public class PlayerTool : MonoBehaviour
     }
     public void ChooseTool(InputAction.CallbackContext context)
     {
+        if (isPaused)
+        {
+            return;
+        }
         if (context.performed)
         {
             int value = NormalizeValue(context.ReadValue<float>());
@@ -40,5 +45,15 @@ public class PlayerTool : MonoBehaviour
             return 1;
         }
         return -1;
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
     }
 }

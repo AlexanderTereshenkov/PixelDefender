@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Furnace : InteractibleObject, IInteractible
 {
     [SerializeField] private string status = "";
     [SerializeField] private float onePieceTime = 10;
     [SerializeField] private Sprite fireFurnace;
-    [SerializeField] private Sprite defaultFurnace;
+    [SerializeField] private Light2D fireLight;
+
     private FurnacePlayerInteraction furnacePlayerInteraction;
     private Inventory playerInventory;
     private bool isWorking;
@@ -15,13 +17,15 @@ public class Furnace : InteractibleObject, IInteractible
     private float tempTime;
     private float resultIronIngot;
     private SpriteRenderer spriteRenderer;
+    private Sprite defaultFurnace;
 
     private void Start()
     {
         furnacePlayerInteraction = SingleGameEnterPoint.instance.GetPlayerUI().GetFurnanceDialogScreen();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = defaultFurnace;
+        defaultFurnace = spriteRenderer.sprite;
         playerInventory = SingleGameEnterPoint.instance.GetPlayerInventory();
+        fireLight.intensity = 0;
     }
 
     private void Update()
@@ -35,12 +39,13 @@ public class Furnace : InteractibleObject, IInteractible
             if(resultIronIngot == ironOre)
             {
                 isWorking = false;
-                status = "Готово! Забрать " + ironOre.ToString() + " слитков";
+                status = "Готово! Забрать слитки: " + ironOre.ToString();
                 isDone = true;
                 furnacePlayerInteraction.ShowAddButton();
                 furnacePlayerInteraction.UpdateStatusText(status);
                 spriteRenderer.sprite = defaultFurnace;
                 resultIronIngot = 0;
+                fireLight.intensity = 0;
             }
         }
     }
@@ -49,6 +54,7 @@ public class Furnace : InteractibleObject, IInteractible
     public void Action(Inventory inventory)
     {
         furnacePlayerInteraction.OpenWindow(status, isDone);
+        SingleGameEnterPoint.instance.GetActionMap("Player").Disable();
         furnacePlayerInteraction.OnAcceptButtonPressed += BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed += CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed += AddIngotsToInventory;
@@ -71,11 +77,13 @@ public class Furnace : InteractibleObject, IInteractible
         status = "В процессе";
         spriteRenderer.sprite = fireFurnace;
         furnacePlayerInteraction.UpdateStatusText(status);
+        fireLight.intensity = 5;
     }
 
     private void CancelAction()
     {
         furnacePlayerInteraction.CloseWindow();
+        SingleGameEnterPoint.instance.GetActionMap("Player").Enable();
         furnacePlayerInteraction.OnAcceptButtonPressed -= BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed -= CancelAction;
         furnacePlayerInteraction.OnTakeResourcesButtonPressed -= AddIngotsToInventory;
