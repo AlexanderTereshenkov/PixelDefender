@@ -26,6 +26,8 @@ public class SingleGameEnterPoint : MonoBehaviour
 
     private GameObject player;
     private Inventory playerInventory;
+    private Coin playerCoin;
+    private LampInsanityManager lampInsanityManager;
 
     private void Awake()
     {
@@ -34,6 +36,8 @@ public class SingleGameEnterPoint : MonoBehaviour
         player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
 
         playerInventory = player.GetComponent<Inventory>();
+        playerCoin = player.GetComponent<Coin>();
+        lampInsanityManager = player.GetComponent<LampInsanityManager>();
 
         cameraMovement.transform.position = player.transform.position;
         cameraMovement.Target = player.transform;
@@ -72,4 +76,8 @@ public class SingleGameEnterPoint : MonoBehaviour
     public InputActionMap GetActionMap(string name) => inputActionAsset.FindActionMap(name);
 
     public Transform GetExitPoint() => exitPoint;
+
+    public Coin GetCoin() => playerCoin;
+
+    public LampInsanityManager GetLampInsanityManager() => lampInsanityManager;
 }

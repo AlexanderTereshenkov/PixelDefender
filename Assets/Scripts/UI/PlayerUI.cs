@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ironText;
     [SerializeField] private TextMeshProUGUI ironIngotText;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI coinText;
 
     [Header("Screen")]
     [SerializeField] private FurnacePlayerInteraction furnaceDialogScreen;
@@ -65,5 +66,7 @@ public class PlayerUI : MonoBehaviour
     public Slider GetOilSlider() => oilSlider;
 
     public Slider GetInsanitySlider () => insanityLevelSlider;
+
+    public TextMeshProUGUI GetCoinText() => coinText;
 
 }

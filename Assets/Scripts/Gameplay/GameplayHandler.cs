@@ -14,6 +14,7 @@ public class GameplayHandler : MonoBehaviour
 
     public event Action<bool> PauseStatusChanged;
     public event Action OnGameEnded;
+    public event Action OnGameWin;
 
     public bool IsGameFinished { get; set; }
 
@@ -73,7 +74,7 @@ public class GameplayHandler : MonoBehaviour
         systemButtonsMap.Disable();
     }
 
-    private void Loose()
+    public void Loose()
     {
         IsGameFinished = true;
         Time.timeScale = 0;
@@ -84,10 +85,14 @@ public class GameplayHandler : MonoBehaviour
     {
         IsGameFinished = true;
         Time.timeScale = 0;
+        OnGameWin?.Invoke();
     }
 
     private void IncreaseDay()
     {
         daysCount++;
+        Debug.Log(daysCount.ToString());
+        if (daysCount == 3)
+            Win(); 
     }
 }
