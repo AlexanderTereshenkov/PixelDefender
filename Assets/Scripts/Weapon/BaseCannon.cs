@@ -3,7 +3,8 @@ using UnityEngine;
 public class BaseCannon : MonoBehaviour, IInteractible
 {
 
-    [SerializeField] private int canonPrice;
+    [SerializeField] private int ironIngotPrice;
+    [SerializeField] private int woodPrice;
 
     private GameObject cannon;
 
@@ -17,9 +18,10 @@ public class BaseCannon : MonoBehaviour, IInteractible
 
     private void PutCannon(Inventory inventory)
     {
-        if(inventory.IronIngot >= canonPrice)
+        if(inventory.IronIngot >= ironIngotPrice && inventory.Wood >= woodPrice)
         {
-            inventory.IronIngot -= canonPrice;
+            inventory.IronIngot -= ironIngotPrice;
+            inventory.Wood -= woodPrice;
             GameObject cannonToCreate = CannonManager.main.GetCannon();
             cannon = Instantiate(cannonToCreate, transform.position, Quaternion.identity);
         }

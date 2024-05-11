@@ -64,6 +64,8 @@ public class LampInsanityManager : MonoBehaviour
                 if (lampOilLevel <= 30)
                 {
                     currentInsaniteLevel += (fearLevel + (lampOilLevel <= 0 ? fearIncrease : 0));
+                    if (currentInsaniteLevel >= maxInsanityLevel)
+                        SingleGameEnterPoint.instance.GetGameplayHandler().Loose();
                     UpdateInsanityUI(currentInsaniteLevel);
                 }
                 oilLevelTime = 0;
@@ -95,6 +97,26 @@ public class LampInsanityManager : MonoBehaviour
     {
         float percent = value / maxInsanityLevel;
         insanitySlider.value = percent;
+    }
+
+    public void AddOil(float value)
+    {
+        lampOilLevel += value;
+        lampOilLevel = Mathf.Clamp(lampOilLevel, 0, 100);
+        UpdateOilUI(lampOilLevel);
+    }
+
+    public void DecreaseInsanity(float value)
+    {
+        currentInsaniteLevel -= value;
+        currentInsaniteLevel = Mathf.Clamp(currentInsaniteLevel, 0, maxInsanityLevel);
+        UpdateInsanityUI(currentInsaniteLevel);
+    }
+
+    public bool isFull(int ButtonID)
+    {
+        if (ButtonID < 2) return lampOilLevel < 100;
+        return currentInsaniteLevel > 0;
     }
 
     private IEnumerator SetMaxBrightnessCoroutine()

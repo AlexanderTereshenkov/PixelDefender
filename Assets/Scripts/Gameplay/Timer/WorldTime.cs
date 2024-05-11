@@ -89,10 +89,11 @@ public class WorldTime : MonoBehaviour
             if (isWaveStarted)
             {
                 StopEnemyWave?.Invoke();
+                OnDayPassed?.Invoke();
                 isWaveStarted = false;
                 Debug.Log("STOP");
             }
-            OnDayPassed?.Invoke();
+            
         }
 
         OnTimeChaged?.Invoke();
