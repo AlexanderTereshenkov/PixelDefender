@@ -22,6 +22,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private MainWall mainWall;
     [SerializeField] private GameplayHandler gameplayHandler;
     [SerializeField] private WorldTime worldTime;
+    [SerializeField] private Transform exitPoint;
 
     private GameObject player;
     private Inventory playerInventory;
@@ -69,4 +70,6 @@ public class SingleGameEnterPoint : MonoBehaviour
     public WorldTime GetWorldTime() => worldTime;
 
     public InputActionMap GetActionMap(string name) => inputActionAsset.FindActionMap(name);
+
+    public Transform GetExitPoint() => exitPoint;
 }
