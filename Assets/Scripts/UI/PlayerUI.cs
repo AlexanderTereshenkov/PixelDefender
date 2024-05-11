@@ -13,6 +13,11 @@ public class PlayerUI : MonoBehaviour
     [Header("Screen")]
     [SerializeField] private FurnacePlayerInteraction furnaceDialogScreen;
     [SerializeField] private Image iconPlace;
+
+    [Header("UIElements")]
+    [SerializeField] private Slider oilSlider;
+    [SerializeField] private Slider insanityLevelSlider;
+
     public int WoodText 
     { 
         set
@@ -56,5 +61,9 @@ public class PlayerUI : MonoBehaviour
     public FurnacePlayerInteraction GetFurnanceDialogScreen() => furnaceDialogScreen;
 
     public Image GetIconPlace() => iconPlace;
+
+    public Slider GetOilSlider() => oilSlider;
+
+    public Slider GetInsanitySlider () => insanityLevelSlider;
 
 }

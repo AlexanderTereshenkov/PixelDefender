@@ -22,7 +22,7 @@ public class WorldTime : MonoBehaviour
 
     private float tempSeconds;
     private bool isWaveStarted = false;
-    private int daysHour;
+    private bool isGradientNeeded = true;
 
     public event Action OnTimeChaged;
     public event Action StartEnemyWave;
@@ -51,6 +51,16 @@ public class WorldTime : MonoBehaviour
         string time = "";
         time += (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         return time;
+    }
+
+    public void SetIsGradientNeeded(bool value)
+    {
+        isGradientNeeded = value;
+    }
+
+    public Light2D GetWorldLight()
+    {
+        return light2D;
     }
 
     private void UpdateTime()
