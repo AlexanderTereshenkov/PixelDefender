@@ -14,6 +14,7 @@ public class Furnace : InteractibleObject, IInteractible
     private Inventory playerInventory;
     private bool isWorking;
     private bool isDone;
+    private bool isOpened = false;
     private float ironOre;
     private float tempTime;
     private float resultIronIngot;
@@ -48,8 +49,11 @@ public class Furnace : InteractibleObject, IInteractible
                 isWorking = false;
                 status = "Готово! Забрать слитки: " + ironOre.ToString();
                 isDone = true;
-                furnacePlayerInteraction.ShowAddButton();
-                furnacePlayerInteraction.UpdateStatusText(status);
+                if (isOpened)
+                {
+                    furnacePlayerInteraction.UpdateStatusText(status);
+                    furnacePlayerInteraction.ShowAddButton();
+                }
                 spriteRenderer.sprite = defaultFurnace;
                 resultIronIngot = 0;
                 fireLight.intensity = 0;
@@ -63,6 +67,7 @@ public class Furnace : InteractibleObject, IInteractible
         furnacePlayerInteraction.OpenWindow(status, isDone);
         playerMap.Disable();
         systemMap.Enable();
+        isOpened = true;
         playerInput.defaultActionMap = "SystemButtons";
         furnacePlayerInteraction.OnAcceptButtonPressed += BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed += CancelAction;
@@ -94,6 +99,7 @@ public class Furnace : InteractibleObject, IInteractible
         furnacePlayerInteraction.CloseWindow();
         playerMap.Enable();
         systemMap.Disable();
+        isOpened = false;
         playerInput.defaultActionMap = "Player";
         furnacePlayerInteraction.OnAcceptButtonPressed -= BeginAction;
         furnacePlayerInteraction.OnCancelButtonPressed -= CancelAction;
