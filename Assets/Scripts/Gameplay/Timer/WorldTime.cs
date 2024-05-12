@@ -22,10 +22,12 @@ public class WorldTime : MonoBehaviour
 
     private float tempSeconds;
     private bool isWaveStarted = false;
+    private bool isGradientNeeded = true;
 
     public event Action OnTimeChaged;
     public event Action StartEnemyWave;
     public event Action StopEnemyWave;
+    public event Action OnDayPassed;
 
     private void Start()
     {
@@ -49,6 +51,16 @@ public class WorldTime : MonoBehaviour
         string time = "";
         time += (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         return time;
+    }
+
+    public void SetIsGradientNeeded(bool value)
+    {
+        isGradientNeeded = value;
+    }
+
+    public Light2D GetWorldLight()
+    {
+        return light2D;
     }
 
     private void UpdateTime()
@@ -77,9 +89,11 @@ public class WorldTime : MonoBehaviour
             if (isWaveStarted)
             {
                 StopEnemyWave?.Invoke();
+                OnDayPassed?.Invoke();
                 isWaveStarted = false;
                 Debug.Log("STOP");
             }
+            
         }
 
         OnTimeChaged?.Invoke();

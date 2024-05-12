@@ -5,18 +5,28 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float damageRadius;
+    [SerializeField] private float attackCoolDown;
     [SerializeField] private LayerMask enemyMask;
     private Animator animator;
     private PlayerTool playerTool;
+    private float coolDownTimeCounter;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         playerTool = GetComponent<PlayerTool>();
+        coolDownTimeCounter = attackCoolDown;
     }
+
+    private void Update()
+    {
+        coolDownTimeCounter += Time.deltaTime;
+    }
+
+
     public void Attack(InputAction.CallbackContext context)
     {
-        if(playerTool.GetTool() == "Sword")
+        if(playerTool.GetTool() == "Sword" && coolDownTimeCounter >= attackCoolDown)
         {
             if (context.performed)
             {
@@ -29,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
                         e.TakeDamage(damage);
                     }
                 }
+                coolDownTimeCounter = 0;
             }
 
         }  

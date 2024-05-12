@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IEnemy
     [SerializeField] private Transform raycastStartPoint;
     [SerializeField] private float coolDown;
     private Rigidbody2D rigidBody;
+    private Animator animator;
     private GameObject player;
 
     //path
@@ -20,13 +21,13 @@ public class Enemy : MonoBehaviour, IEnemy
     private bool isPathEnded = false;
     private float attackCoolDown;
     private bool isDestroyed=false;
-
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         player = SingleGameEnterPoint.instance.GetPlayer();
         path = SingleGameEnterPoint.instance.GetEnemyPathManager().GetEnemyPathHolder().Waypoints();
-        currentPoint = path[index];
+        currentPoint = path[index]; 
     }
 
     private void Update()
@@ -34,7 +35,6 @@ public class Enemy : MonoBehaviour, IEnemy
         attackCoolDown += Time.deltaTime;
         if (isPathEnded)
         {
-            
             if(attackCoolDown >= coolDown)
             {
                 Attack();
@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour, IEnemy
     {
         if (mainWall == null) return;
         mainWall.AttackWall(damage);
+        animator.SetTrigger("Attack");
     }
 
     public void Move()
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour, IEnemy
             currentPoint = path[index];
         }
         rigidBody.velocity = dir * speed;
+        animator.SetFloat("Speed", rigidBody.velocity.magnitude);
     }
 
     public void TakeDamage(float damage)

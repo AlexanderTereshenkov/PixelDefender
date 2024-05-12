@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IPausable
+public class PlayerMovement : MonoBehaviour, IPausablePlayer
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float lerpTime;
-
 
     private Rigidbody2D rigidBody;
     private Animator animator;
@@ -21,6 +20,11 @@ public class PlayerMovement : MonoBehaviour, IPausable
 
     private void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
+
         inputVector.Normalize();
         lerpInputVector = Vector2.Lerp(lerpInputVector, inputVector, Time.deltaTime * lerpTime);
         rigidBody.velocity = lerpInputVector * playerSpeed;
@@ -32,7 +36,6 @@ public class PlayerMovement : MonoBehaviour, IPausable
 
     public void GetInputVector(InputAction.CallbackContext context)
     {
-        if(isPaused) return; 
         inputVector = context.ReadValue<Vector2>();
     }
 
@@ -45,4 +48,5 @@ public class PlayerMovement : MonoBehaviour, IPausable
     {
         isPaused = false;
     }
+
 }
