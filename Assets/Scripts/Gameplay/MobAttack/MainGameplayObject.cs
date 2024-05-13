@@ -1,6 +1,6 @@
 using System;
 
-public class MainWall : BreakableObject
+public class MainGameplayObject : BreakableObject
 {
     private bool isBroken = false;
 

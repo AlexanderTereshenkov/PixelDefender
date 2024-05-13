@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class GameplayHandler : MonoBehaviour
 {
     private int daysCount;
-    private MainWall mainWall;
+    private MainGameplayObject mainWall;
     private List<IPausable> pausableList = new List<IPausable>();
     private InputActionMap playerMap;
     private InputActionMap systemButtonsMap;

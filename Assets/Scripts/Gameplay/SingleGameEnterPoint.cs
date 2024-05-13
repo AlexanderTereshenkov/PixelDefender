@@ -19,7 +19,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [Header("End Point")]
     [SerializeField] private Transform[] endPoints;
     [Header("Gameplay")]
-    [SerializeField] private MainWall mainWall;
+    [SerializeField] private MainGameplayObject mainWall;
     [SerializeField] private GameplayHandler gameplayHandler;
     [SerializeField] private WorldTime worldTime;
     [SerializeField] private Transform exitPoint;
@@ -65,7 +65,7 @@ public class SingleGameEnterPoint : MonoBehaviour
 
     public Transform GetRandomPoint() => endPoints[Random.Range(0, endPoints.Length)];
 
-    public MainWall GetMainWall() => mainWall;
+    public MainGameplayObject GetMainWall() => mainWall;
 
     public GameplayHandler GetGameplayHandler() => gameplayHandler;
 

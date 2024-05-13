@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private int index = 0;
     private Transform[] path;
     private Transform currentPoint;
-    private MainWall mainWall;
+    private MainGameplayObject mainWall;
     private bool isPathEnded = false;
     private float attackCoolDown;
     private bool isDestroyed=false;
