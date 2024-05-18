@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,11 +16,22 @@ public class Bullet : MonoBehaviour
     public void SetTarget(Transform _target)
     {
         target = _target;
+        target.GetComponent<Enemy>().CancelTarget += CancelTarget;
+    }
+
+    private void OnDisable()
+    {
+        target.GetComponent<Enemy>().CancelTarget -= CancelTarget;
     }
 
     void FixedUpdate()
     {
         if (!target) return;
+        if (target.IsDestroyed())
+        {
+            Destroy(gameObject);
+            return;
+        }
         Vector2 direction = (target.position - transform.position).normalized;
         rb.velocity = direction * speed;
     }
@@ -30,6 +42,11 @@ public class Bullet : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
+        Destroy(gameObject);
+    }
+
+    public void CancelTarget()
+    {
         Destroy(gameObject);
     }
 }

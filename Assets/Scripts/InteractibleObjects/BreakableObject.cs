@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BreakableObject : MonoBehaviour
+public abstract class BreakableObject : Sounds
 {
     [SerializeField] internal string usableTool;
     [SerializeField] internal float health;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IPausablePlayer
+public class PlayerMovement : Sounds, IPausablePlayer
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float lerpTime;
@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour, IPausablePlayer
     public void Resume()
     {
         isPaused = false;
+    }
+
+    public void PlayOneStep()
+    {
+        PlaySound(sounds[0], volume: 0.35f);
     }
 
 }

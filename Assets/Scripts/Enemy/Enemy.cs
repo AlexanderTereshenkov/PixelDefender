@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour, IEnemy
     private bool isPathEnded = false;
     private float attackCoolDown;
     private bool isDestroyed=false;
+    public event Action CancelTarget;
 
     private void Start()
     {
@@ -89,12 +91,14 @@ public class Enemy : MonoBehaviour, IEnemy
         if (health <= 0 && !isDestroyed)
         {
             MobSpapwner.onEnemyDestroy?.Invoke();
+            gameObject.layer = 0;
+            CancelTarget?.Invoke();
             isDestroyed = true;
             animator.SetTrigger("Death");
             StartCoroutine(DeadAnimation());
-            rigidBody.isKinematic = true;
-            rigidBody.velocity = Vector2.zero;
-            boxCollider.enabled = false;
+            rigidBody.isKinematic = true;  
+            rigidBody.velocity = Vector2.zero;         
+            //boxCollider.enabled = false;
             //Destroy(gameObject);
         }
     }
@@ -118,5 +122,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
         Destroy(gameObject);
     }
+
+    public bool IsDestroyed() => isDestroyed;
 
 }
