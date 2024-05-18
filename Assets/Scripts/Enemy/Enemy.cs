@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnemy
@@ -11,20 +12,25 @@ public class Enemy : MonoBehaviour, IEnemy
     [SerializeField] private float coolDown;
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private CircleCollider2D boxCollider;
     private GameObject player;
 
     //path
     private int index = 0;
     private Transform[] path;
     private Transform currentPoint;
-    private MainWall mainWall;
+    private MainGameplayObject mainWall;
     private bool isPathEnded = false;
     private float attackCoolDown;
     private bool isDestroyed=false;
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<CircleCollider2D>();
         player = SingleGameEnterPoint.instance.GetPlayer();
         path = SingleGameEnterPoint.instance.GetEnemyPathManager().GetEnemyPathHolder().Waypoints();
         currentPoint = path[index]; 
@@ -32,6 +38,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     private void Update()
     {
+        if (isDestroyed) return;
         attackCoolDown += Time.deltaTime;
         if (isPathEnded)
         {
@@ -83,8 +90,33 @@ public class Enemy : MonoBehaviour, IEnemy
         {
             MobSpapwner.onEnemyDestroy?.Invoke();
             isDestroyed = true;
-            Destroy(gameObject);
+            animator.SetTrigger("Death");
+            StartCoroutine(DeadAnimation());
+            rigidBody.isKinematic = true;
+            rigidBody.velocity = Vector2.zero;
+            boxCollider.enabled = false;
+            //Destroy(gameObject);
         }
+    }
+
+    private IEnumerator DeadAnimation()
+    {
+        yield return new WaitForSeconds(3f);
+
+        float tempTime = 0;
+
+        Color color = spriteRenderer.color;
+
+        while(spriteRenderer.color.a > 0)
+        {
+            tempTime += Time.deltaTime;
+            float tempColor = Mathf.Lerp(1, 0, tempTime / 1f);
+            color.a = tempColor;
+            spriteRenderer.color = color;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
 }

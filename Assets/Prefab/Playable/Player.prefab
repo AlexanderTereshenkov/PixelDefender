@@ -369,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   damageRadius: 2
-  attackCoolDown: 10
+  attackCoolDown: 1
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
@@ -434,7 +434,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 970724708, guid: e6856b3af3e422344bb3f343b7aa1443, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -519,9 +519,9 @@ MonoBehaviour:
   maxIntensity: 1.5
   lampOilLevel: 100
   maxInsanityLevel: 100
-  fearLevel: 1
-  fearIncrease: 5
-  oilLevelDecrement: 5
+  fearLevel: 3
+  fearIncrease: 7
+  oilLevelDecrement: 1
   playerLamp: {fileID: 7699967191771578478}
 --- !u!114 &6962895053034544176
 MonoBehaviour:
@@ -535,4 +535,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c047152dbd7a064395db6ad8ad5f84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 10
+  coins: 150
