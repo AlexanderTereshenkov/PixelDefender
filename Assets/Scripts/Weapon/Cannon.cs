@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class Cannon : Sounds
 {
 
     [SerializeField] private LayerMask enemyMask;
@@ -36,6 +37,8 @@ public class Cannon : MonoBehaviour
             tempSeconds += Time.deltaTime;
             if (tempSeconds > timeToShoot)
             {
+                if(target.IsDestroyed()) { target = null; }
+                 
                 Shoot();
                 tempSeconds = 0;
             }
@@ -80,5 +83,6 @@ public class Cannon : MonoBehaviour
         GameObject bulletObj = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         bulletScript.SetTarget(target);
+        PlaySound(sounds[0], volume: 1f);
     }
 }

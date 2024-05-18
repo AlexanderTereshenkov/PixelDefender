@@ -7,6 +7,7 @@ public class Iron : BreakableObject, IBreakable
         if (isPossibleToGet && tool.Equals(usableTool))
         {   
             health -= Random.Range(1, 4);
+            PlaySound(sounds[0], destroyed: health <= 0);
             Instantiate(particles, particlesTransform);
             if (health <= 0)
             {
