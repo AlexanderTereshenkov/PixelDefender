@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class PauseMenu : MonoBehaviour
         gameplayHandler.Resume();
     }
 
+    public void ExitGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     private void OnPauseStatusChaged(bool isPaused)
     {
         foreach(var elem in otherUIElements)
@@ -44,4 +50,6 @@ public class PauseMenu : MonoBehaviour
         }
         pauseMenu.SetActive(isPaused);
     }
+
+
 }
