@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  health: 50
+  health: 10
   viewDistance: 0
   damage: 3
   playerMask:
