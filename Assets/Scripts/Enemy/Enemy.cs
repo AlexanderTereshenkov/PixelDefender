@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEnemy
+[RequireComponent(typeof(AudioSource))]
+public class Enemy : Sounds, IEnemy
 {
     [SerializeField] private float speed;
     [SerializeField] private float health;
@@ -25,7 +26,6 @@ public class Enemy : MonoBehaviour, IEnemy
     private bool isPathEnded = false;
     private float attackCoolDown;
     private bool isDestroyed=false;
-    public event Action CancelTarget;
 
     private void Start()
     {
@@ -88,18 +88,17 @@ public class Enemy : MonoBehaviour, IEnemy
     public void TakeDamage(float damage)
     {
         health -= damage;
+        PlaySound(sounds[0], destroyed: health <= 0, volume:0.35f);
         if (health <= 0 && !isDestroyed)
         {
             MobSpapwner.onEnemyDestroy?.Invoke();
             gameObject.layer = 0;
-            CancelTarget?.Invoke();
             isDestroyed = true;
             animator.SetTrigger("Death");
             StartCoroutine(DeadAnimation());
             rigidBody.isKinematic = true;  
-            rigidBody.velocity = Vector2.zero;         
-            //boxCollider.enabled = false;
-            //Destroy(gameObject);
+            rigidBody.velocity = Vector2.zero;
+            boxCollider.enabled = false;
         }
     }
 
@@ -123,6 +122,6 @@ public class Enemy : MonoBehaviour, IEnemy
         Destroy(gameObject);
     }
 
-    public bool IsDestroyed() => isDestroyed;
+    public bool IsObjectDestroyed() => isDestroyed;
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,14 @@ public class MobSpapwner : MonoBehaviour
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
+    public event Action<int> OnDayPassed;
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
+    private int days = 0;
 
 
     private void Awake()
@@ -33,16 +36,12 @@ public class MobSpapwner : MonoBehaviour
 
     private void OnEnable()
     {
-        worldTime.StartEnemyWave += StartWave;
-        worldTime.StopEnemyWave += EndWave;
-
+        worldTime.StartEnemyWave += StartWave;     
     }
 
     private void OnDisable()
     {
-        worldTime.StartEnemyWave -= StartWave;
-        worldTime.StopEnemyWave -= EndWave;
-
+        worldTime.StartEnemyWave -= StartWave;       
     }
 
     void Update()
@@ -61,6 +60,7 @@ public class MobSpapwner : MonoBehaviour
 
         if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
         {
+            Debug.Log("END WAVE");
             EndWave();
         }
     }
@@ -81,7 +81,10 @@ public class MobSpapwner : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastSpawn = 0f;
-        currentWave++;
+        currentWave+=3;
+        days++;
+        Debug.Log("Inrrease days suddenly " + days);
+        OnDayPassed?.Invoke(days);
     }
 
     private void SpawnEnemy()

@@ -16,7 +16,7 @@ public class Cannon : Sounds
     [SerializeField] private float timeToShoot;
     private float tempSeconds;
     private Transform target;
-
+    private Enemy currentEnemy;
 
     private void Update()
     {       
@@ -26,6 +26,7 @@ public class Cannon : Sounds
             return;
         }
 
+
         RotateTowardsTarget();
 
         if (!CheckTargetIsInRange())
@@ -34,11 +35,16 @@ public class Cannon : Sounds
         }
         else
         {
+            if (currentEnemy.IsObjectDestroyed())
+            {
+                target = null;
+                currentEnemy = null;
+                return;
+            }
             tempSeconds += Time.deltaTime;
             if (tempSeconds > timeToShoot)
             {
-                if(target.IsDestroyed()) { target = null; }
-                 
+                
                 Shoot();
                 tempSeconds = 0;
             }
@@ -59,6 +65,7 @@ public class Cannon : Sounds
         if (hits.Length > 0)
         {
             target = hits[0].transform;
+            currentEnemy = target.gameObject.GetComponent<Enemy>();
         }
     }
 

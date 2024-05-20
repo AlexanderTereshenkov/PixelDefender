@@ -76,7 +76,7 @@ public class Furnace : InteractibleObject, IInteractible
 
     private void BeginAction()
     {
-        if (isDone) return;
+        if (isDone || isWorking) return;
         float wishfulIronCount = furnacePlayerInteraction.SliderValue;
         float playerIron = playerInventory.Iron;
         if (wishfulIronCount <= 0 || playerIron <= 0)

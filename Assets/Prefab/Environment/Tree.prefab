@@ -179,7 +179,7 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: e4b44941f06aa99479cb61a5b8a1850c, type: 3}
   usableTool: Axe
-  health: 15
+  health: 10
   particles: {fileID: 8912153612763053740, guid: 948f90f87f6a48546b03af59a4fe45f4, type: 3}
   particlesTransform: {fileID: 7064214703343080084}
 --- !u!82 &4767504399504919468

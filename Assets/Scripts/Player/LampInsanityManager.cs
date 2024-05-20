@@ -27,6 +27,8 @@ public class LampInsanityManager : MonoBehaviour
     private float oilLevelTime;
 
     private float currentInsaniteLevel = 0;
+    private float maxLampRadius;
+    private float maxLampBrightness;
 
 
     private void Start()
@@ -35,6 +37,8 @@ public class LampInsanityManager : MonoBehaviour
         worldLight = SingleGameEnterPoint.instance.GetWorldTime().GetWorldLight();
         oilSlider = SingleGameEnterPoint.instance.GetPlayerUI().GetOilSlider();
         insanitySlider = SingleGameEnterPoint.instance.GetPlayerUI().GetInsanitySlider();
+        maxLampRadius = playerLamp.pointLightInnerRadius;
+        maxLampBrightness = playerLamp.intensity;
     }
 
     private void Update()
@@ -103,6 +107,11 @@ public class LampInsanityManager : MonoBehaviour
     {
         lampOilLevel += value;
         lampOilLevel = Mathf.Clamp(lampOilLevel, 0, 100);
+        if(lampOilLevel > 30)
+        {
+            playerLamp.pointLightInnerRadius = maxLampRadius;
+            playerLamp.intensity = maxLampBrightness;
+        }
         UpdateOilUI(lampOilLevel);
     }
 
