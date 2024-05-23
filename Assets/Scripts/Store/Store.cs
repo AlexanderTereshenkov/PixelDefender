@@ -12,7 +12,7 @@ public class Store : InteractibleObject, IInteractible
 
 
     private SingleGameEnterPoint singleGameEnterPoint;
-    private Coin coin;
+    private Wallet coin;
     private LampInsanityManager lampInsanityManager;
 
     private InputActionMap playerMap;

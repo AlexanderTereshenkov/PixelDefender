@@ -12,10 +12,11 @@ public class Enemy : Sounds, IEnemy
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private Transform raycastStartPoint;
     [SerializeField] private float coolDown;
+    [SerializeField] GameObject coin;
     private Rigidbody2D rigidBody;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private CircleCollider2D boxCollider;
+    private BoxCollider2D boxCollider;
     private GameObject player;
 
     //path
@@ -32,7 +33,7 @@ public class Enemy : Sounds, IEnemy
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<CircleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         player = SingleGameEnterPoint.instance.GetPlayer();
         path = SingleGameEnterPoint.instance.GetEnemyPathManager().GetEnemyPathHolder().Waypoints();
         currentPoint = path[index]; 
@@ -118,7 +119,7 @@ public class Enemy : Sounds, IEnemy
             spriteRenderer.color = color;
             yield return null;
         }
-
+        Instantiate(coin, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
