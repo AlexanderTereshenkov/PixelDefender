@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float damage;
     private Rigidbody2D rb;
     private Transform target;
+    private Enemy currentEnemy;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -16,18 +17,13 @@ public class Bullet : MonoBehaviour
     public void SetTarget(Transform _target)
     {
         target = _target;
-        target.GetComponent<Enemy>().CancelTarget += CancelTarget;
-    }
-
-    private void OnDisable()
-    {
-        target.GetComponent<Enemy>().CancelTarget -= CancelTarget;
+        currentEnemy = target.GetComponent<Enemy>();
     }
 
     void FixedUpdate()
     {
         if (!target) return;
-        if (target.IsDestroyed())
+        if (currentEnemy.IsObjectDestroyed())
         {
             Destroy(gameObject);
             return;
@@ -45,8 +41,4 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void CancelTarget()
-    {
-        Destroy(gameObject);
-    }
 }

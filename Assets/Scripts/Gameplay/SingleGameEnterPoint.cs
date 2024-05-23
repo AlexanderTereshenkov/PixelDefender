@@ -23,6 +23,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private GameplayHandler gameplayHandler;
     [SerializeField] private WorldTime worldTime;
     [SerializeField] private Transform exitPoint;
+    [SerializeField] private MobSpapwner mobSpawner;
 
     private GameObject player;
     private Inventory playerInventory;
@@ -80,4 +81,6 @@ public class SingleGameEnterPoint : MonoBehaviour
     public Coin GetCoin() => playerCoin;
 
     public LampInsanityManager GetLampInsanityManager() => lampInsanityManager;
+
+    public MobSpapwner GetMobSpawner() => mobSpawner;
 }

@@ -522,9 +522,9 @@ MonoBehaviour:
   maxIntensity: 1.5
   lampOilLevel: 100
   maxInsanityLevel: 100
-  fearLevel: 3
-  fearIncrease: 7
-  oilLevelDecrement: 1
+  fearLevel: 5
+  fearIncrease: 8
+  oilLevelDecrement: 2
   playerLamp: {fileID: 7699967191771578478}
 --- !u!114 &6962895053034544176
 MonoBehaviour:

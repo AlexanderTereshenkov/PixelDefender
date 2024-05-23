@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GameplayHandler : MonoBehaviour
 {
-    private int daysCount;
+
     private MainGameplayObject mainWall;
     private List<IPausable> pausableList = new List<IPausable>();
     private InputActionMap playerMap;
@@ -25,7 +25,7 @@ public class GameplayHandler : MonoBehaviour
         playerMap = singleGameEnterPoint.GetActionMap("Player");
         systemButtonsMap = singleGameEnterPoint.GetActionMap("SystemButtons");
         mainWall.OnWallBroken += Loose;
-        singleGameEnterPoint.GetWorldTime().OnDayPassed += IncreaseDay;
+        singleGameEnterPoint.GetMobSpawner().OnDayPassed += IncreaseDay;
     }
     private void OnEnable()
     {
@@ -37,7 +37,7 @@ public class GameplayHandler : MonoBehaviour
     private void OnDisable()
     {
         mainWall.OnWallBroken -= Loose;
-        singleGameEnterPoint.GetWorldTime().OnDayPassed -= IncreaseDay;
+        singleGameEnterPoint.GetMobSpawner().OnDayPassed -= IncreaseDay;
     }
 
     public void RegisterPausableobject(IPausable pausable)
@@ -88,11 +88,9 @@ public class GameplayHandler : MonoBehaviour
         OnGameWin?.Invoke();
     }
 
-    private void IncreaseDay()
+    private void IncreaseDay(int days)
     {
-        daysCount++;
-        Debug.Log(daysCount.ToString());
-        if (daysCount == 3)
+        if (days >= 3)
             Win(); 
     }
 }

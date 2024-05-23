@@ -7,11 +7,14 @@ public abstract class BreakableObject : Sounds
     [SerializeField] internal GameObject particles;
     [SerializeField] internal Transform particlesTransform;
 
-     internal bool isPossibleToGet = false;
+    internal bool isPossibleToGet = false;
+
+    internal float maxHealth;
 
     private void Start()
     {
-        health = Random.Range(health, health + 10);
+        health = Random.Range((int)health, (int)health + 10);
+        maxHealth = health;
     }
 
     private void OnMouseEnter()

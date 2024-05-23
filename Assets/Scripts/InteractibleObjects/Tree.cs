@@ -7,7 +7,7 @@ public class Tree : BreakableObject, IBreakable
     {
         if (isPossibleToGet && tool.Equals(usableTool))
         {
-            inventory.Wood += Random.Range(1, 3);
+            inventory.Wood += 1;
             health--;
             PlaySound(sounds[0], destroyed: health <= 0);
             Instantiate(particles, particlesTransform);
