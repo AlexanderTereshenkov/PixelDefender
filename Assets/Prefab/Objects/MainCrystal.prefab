@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 104068560044904456}
   - component: {fileID: 3758353375381905392}
   - component: {fileID: 8409415590749168482}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: InfoZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

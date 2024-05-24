@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6255876505746187981}
   - component: {fileID: 4049544760015833860}
   - component: {fileID: 3395991069510897310}
-  - component: {fileID: 8130452376643462759}
+  - component: {fileID: -4936179569816695145}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -134,7 +134,7 @@ MonoBehaviour:
   speed: 3.1
   health: 15
   viewDistance: 0
-  damage: 0
+  damage: 3
   playerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -303,7 +303,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.582624, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8130452376643462759
+--- !u!114 &-4936179569816695145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

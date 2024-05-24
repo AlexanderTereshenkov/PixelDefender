@@ -8,8 +8,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackCoolDown;
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private float maxInteractionRange;
-    [SerializeField] private Texture2D cursorDefault;
-    [SerializeField] private Texture2D cursorChanged;
     private Animator animator;
     private PlayerTool playerTool;
     private float coolDownTimeCounter;
@@ -19,13 +17,11 @@ public class PlayerAttack : MonoBehaviour
         animator = GetComponent<Animator>();
         playerTool = GetComponent<PlayerTool>();
         coolDownTimeCounter = attackCoolDown;
-        Cursor.SetCursor(cursorDefault, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     private void Update()
     {
         coolDownTimeCounter += Time.deltaTime;
-          
     }
 
 
@@ -36,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
             if (context.performed)
             {
                 animator.SetTrigger("Attack");
-                var hit = GetRaycastHit();                        
+                var hit = GetRaycastHit(maxInteractionRange);                        
                 if (hit.collider != null)
                 {
                     if (hit.collider.gameObject.TryGetComponent(out Enemy enemy))
@@ -51,10 +47,10 @@ public class PlayerAttack : MonoBehaviour
         }  
     }
 
-    private RaycastHit2D GetRaycastHit()
+    private RaycastHit2D GetRaycastHit(float range = 30f)
     {
         Vector3 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, maxInteractionRange, enemyMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lookDirection, range, enemyMask);
 
         return hit;
     }

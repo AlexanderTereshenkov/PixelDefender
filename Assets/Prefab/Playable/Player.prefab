@@ -372,13 +372,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   damageRadius: 2
-  attackCoolDown: 1
+  attackCoolDown: 0.5
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
   maxInteractionRange: 2
-  cursorDefault: {fileID: 2800000, guid: f2e227a3486ba364789a7dadac13d7f8, type: 3}
-  cursorChanged: {fileID: 2800000, guid: 8ed69fda8d464dd4d9ca8b5d5a8d66c4, type: 3}
 --- !u!95 &2870998074299926254
 Animator:
   serializedVersion: 5

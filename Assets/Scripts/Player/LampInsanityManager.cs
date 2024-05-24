@@ -45,10 +45,12 @@ public class LampInsanityManager : MonoBehaviour
     {
         if (lightCalculationg)
         {
+            /*
             float distance = Vector2.Distance(transform.position, exitPoint.position);
             float percent = distance / maxDistanceFromBase;
             percent = Mathf.Clamp(percent, 0.05f, 1);
             worldLight.intensity = maxIntensity * (1 - percent);
+            */
 
             oilLevelTime += Time.deltaTime;
             if (oilLevelTime >= 1)
@@ -73,6 +75,7 @@ public class LampInsanityManager : MonoBehaviour
                     UpdateInsanityUI(currentInsaniteLevel);
                 }
                 oilLevelTime = 0;
+
             }
         }
     }
@@ -81,13 +84,20 @@ public class LampInsanityManager : MonoBehaviour
     {
         lightCalculationg = value;
         playerLamp.enabled = value;
+        tempGlobalLightTime = 0;
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
         if (!value)
         {
+            StopAllCoroutines();
             StartCoroutine(SetMaxBrightnessCoroutine());
         }
         else
         {
             StopAllCoroutines();
+            StartCoroutine(SetMinBrightnessCoroutine());
         }
     }
 
@@ -133,7 +143,21 @@ public class LampInsanityManager : MonoBehaviour
         while(worldLight.intensity < maxIntensity)
         {
             tempGlobalLightTime += Time.deltaTime;
-            tempIntensivity = Mathf.Lerp(worldLight.intensity, maxIntensity, tempGlobalLightTime / 1f);
+            //tempIntensivity = Mathf.Lerp(0, maxIntensity, tempGlobalLightTime / 5f);
+            tempIntensivity = Mathf.MoveTowards(worldLight.intensity, maxIntensity, Time.deltaTime / 2f);
+            worldLight.intensity = tempIntensivity;
+            yield return null;
+        }
+        tempGlobalLightTime = 0;
+    }
+
+    private IEnumerator SetMinBrightnessCoroutine()
+    {
+        while (worldLight.intensity > 0)
+        {
+            tempGlobalLightTime += Time.deltaTime;
+            //tempIntensivity = Mathf.Lerp(worldLight.intensity, 0, tempGlobalLightTime / 5f);
+            tempIntensivity = Mathf.MoveTowards(worldLight.intensity, 0, Time.deltaTime / 0.5f);
             worldLight.intensity = tempIntensivity;
             yield return null;
         }
