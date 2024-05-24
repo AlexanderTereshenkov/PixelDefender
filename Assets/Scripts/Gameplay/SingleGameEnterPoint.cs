@@ -9,6 +9,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform playerSpawnPosition;
     [SerializeField] private InputActionAsset inputActionAsset;
+    [SerializeField] private Texture2D cursorTexture;
 
     [Header("Camera")]
     [SerializeField] private CameraMovement cameraMovement;
@@ -33,6 +34,8 @@ public class SingleGameEnterPoint : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
+
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
 
         player = Instantiate(playerPrefab, playerSpawnPosition.position, Quaternion.identity);
 
@@ -83,4 +86,6 @@ public class SingleGameEnterPoint : MonoBehaviour
     public LampInsanityManager GetLampInsanityManager() => lampInsanityManager;
 
     public MobSpapwner GetMobSpawner() => mobSpawner;
+
+
 }

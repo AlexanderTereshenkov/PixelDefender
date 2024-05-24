@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,7 +58,6 @@ public class MobSpapwner : MonoBehaviour
 
         if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
         {
-            Debug.Log("END WAVE");
             EndWave();
         }
     }
@@ -72,7 +69,6 @@ public class MobSpapwner : MonoBehaviour
 
     private void StartWave()
     {
-        //yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
     }
@@ -83,7 +79,6 @@ public class MobSpapwner : MonoBehaviour
         timeSinceLastSpawn = 0f;
         currentWave+=3;
         days++;
-        Debug.Log("Inrrease days suddenly " + days);
         OnDayPassed?.Invoke(days);
     }
 

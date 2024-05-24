@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+
 using UnityEngine;
 
 public class Cannon : Sounds
@@ -77,12 +74,6 @@ public class Cannon : Sounds
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         cannonRotationPoint.rotation = Quaternion.RotateTowards(cannonRotationPoint.rotation, 
             targetRotation, rotationSpeed * Time.deltaTime);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
     }
 
     void Shoot()

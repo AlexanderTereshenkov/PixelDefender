@@ -14,12 +14,10 @@ public class ChangeCursor : MonoBehaviour
     private void OnMouseOver()
     {
         Cursor.SetCursor(cursorChanged, Vector2.zero, CursorMode.ForceSoftware);
-        Debug.Log("Бью");
     }
 
     private void OnMouseExit()
     {
         Cursor.SetCursor(cursorDefault, Vector2.zero, CursorMode.ForceSoftware);
-        Debug.Log("Не бью!!!!!!!!!!!!!");
     }
 }

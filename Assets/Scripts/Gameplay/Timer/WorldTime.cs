@@ -79,7 +79,6 @@ public class WorldTime : MonoBehaviour
         {
             if (!isWaveStarted)
             {
-                Debug.Log("GO");
                 StartEnemyWave?.Invoke();
                 isWaveStarted = true;
             }
@@ -91,7 +90,6 @@ public class WorldTime : MonoBehaviour
                 StopEnemyWave?.Invoke();
                 OnDayPassed?.Invoke();
                 isWaveStarted = false;
-                Debug.Log("STOP");
             }
             
         }
