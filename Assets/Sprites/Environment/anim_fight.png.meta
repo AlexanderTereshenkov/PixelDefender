@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c9f6b67ebc302746a1d122280f2f053
+guid: a647c39afc349864f81e55c634bdda18
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dec_0
+      name: anim_fight_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 35
-        width: 14
-        height: 12
+        y: 0
+        width: 32
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65fe118f5b34f8b479e9df5e9842b29a
-      internalID: 723854609
+      spriteID: 24a2c6fb086352c429663e71b0cdddaf
+      internalID: 769396875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dec_1
+      name: anim_fight_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 32
         y: 0
-        width: 17
-        height: 45
+        width: 32
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b501d4dd10dd3434d888323d6d147a0c
-      internalID: -1710375207
+      spriteID: 4acba22678ac3f245bc0ea10cf5328f7
+      internalID: -145396378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anim_fight_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26d1294f5ae410d4c9a3b8fd4f2f8445
+      internalID: 1785903863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anim_fight_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e939eea2d3606746bb18cb12aa2b911
+      internalID: 464701742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anim_fight_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ce67b54de434f04699ba386708ed1df
+      internalID: 1474161231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anim_fight_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962f68ae1e8599649acc7fc3598565cd
+      internalID: 186070204
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dec_0: 723854609
-      dec_1: -1710375207
+      anim_fight_0: 769396875
+      anim_fight_1: -145396378
+      anim_fight_2: 1785903863
+      anim_fight_3: 464701742
+      anim_fight_4: 1474161231
+      anim_fight_5: 186070204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

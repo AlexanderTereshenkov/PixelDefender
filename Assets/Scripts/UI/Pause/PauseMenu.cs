@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 
     private void OnPauseStatusChaged(bool isPaused)
