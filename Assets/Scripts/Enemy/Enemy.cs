@@ -13,6 +13,7 @@ public class Enemy : Sounds, IEnemy
     [SerializeField] private Transform raycastStartPoint;
     [SerializeField] private float coolDown;
     [SerializeField] GameObject coin;
+    [SerializeField] private GameObject bloodParticles;
     private Rigidbody2D rigidBody;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -90,6 +91,7 @@ public class Enemy : Sounds, IEnemy
     {
         health -= damage;
         PlaySound(sounds[0], destroyed: health <= 0, volume:0.35f);
+        Instantiate(bloodParticles, transform.position, Quaternion.identity);
         if (health <= 0 && !isDestroyed)
         {
             MobSpapwner.onEnemyDestroy?.Invoke();

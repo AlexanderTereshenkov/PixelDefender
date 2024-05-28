@@ -141,6 +141,7 @@ MonoBehaviour:
   raycastStartPoint: {fileID: 0}
   coolDown: 1
   coin: {fileID: 1049991588776867136, guid: fb62c78a319d221408419118c043a4e5, type: 3}
+  bloodParticles: {fileID: 8912153612763053740, guid: e3df4bfb8ef34ed40b633945b37ddaa8, type: 3}
 --- !u!95 &-6255876505746187981
 Animator:
   serializedVersion: 5
