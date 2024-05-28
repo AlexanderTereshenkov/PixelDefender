@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4088818352319172731}
   - component: {fileID: 7674421053893342628}
   - component: {fileID: 4767504399504919468}
+  - component: {fileID: 7455781756950341032}
   m_Layer: 6
   m_Name: Tree
   m_TagString: Untagged
@@ -278,3 +279,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7455781756950341032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8899896942626600794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277df2d47bc74e24280e5f0b247896c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorDefault: {fileID: 2800000, guid: f2e227a3486ba364789a7dadac13d7f8, type: 3}
+  cursorChanged: {fileID: 2800000, guid: 56d03a38b76e85d45b588d94536f5405, type: 3}

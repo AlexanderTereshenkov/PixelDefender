@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d690352f70578954db12cea7036faf18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 6
   damageRadius: 2
   attackCoolDown: 0.5
   enemyMask:
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c047152dbd7a064395db6ad8ad5f84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 150
+  coins: 0
 --- !u!82 &4716372955531071357
 AudioSource:
   m_ObjectHideFlags: 0

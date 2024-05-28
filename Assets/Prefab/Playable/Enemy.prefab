@@ -132,9 +132,9 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: 195c559c4710c2f4788a1d4d8d01501d, type: 3}
   speed: 3.1
-  health: 15
+  health: 16
   viewDistance: 0
-  damage: 3
+  damage: 2
   playerMask:
     serializedVersion: 2
     m_Bits: 0
