@@ -5,6 +5,7 @@ public class Inventory : MonoBehaviour
     private int wood;
     private int stone;
     private int iron;
+    private int ironIngot;
     private PlayerUI playerUI;
     public int Wood 
     {
@@ -44,6 +45,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public int IronIngot
+    {
+        get
+        {
+            return ironIngot;
+        }
+        set
+        {
+            ironIngot = value;
+            OnUIChanged(3, ironIngot);
+        }
+    }
+
     private void Start()
     {
         playerUI = SingleGameEnterPoint.instance.GetPlayerUI();
@@ -62,6 +76,9 @@ public class Inventory : MonoBehaviour
                 break;
             case 2:
                 playerUI.IronText = value;
+                break;
+            case 3:
+                playerUI.IronIngotText = value;
                 break;
 
         }

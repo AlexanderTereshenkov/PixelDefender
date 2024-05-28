@@ -8,6 +8,7 @@ public class ClockUI : MonoBehaviour
     private void Start()
     {
         playerUI = SingleGameEnterPoint.instance.GetPlayerUI();
+        playerUI.TimerText = worldTime.GetTime();
     }
 
     private void OnEnable()

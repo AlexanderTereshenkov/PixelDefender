@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class Cannon : Sounds
 {
 
     [SerializeField] private LayerMask enemyMask;
@@ -15,7 +13,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private float timeToShoot;
     private float tempSeconds;
     private Transform target;
-
+    private Enemy currentEnemy;
 
     private void Update()
     {       
@@ -25,6 +23,7 @@ public class Cannon : MonoBehaviour
             return;
         }
 
+
         RotateTowardsTarget();
 
         if (!CheckTargetIsInRange())
@@ -33,9 +32,16 @@ public class Cannon : MonoBehaviour
         }
         else
         {
+            if (currentEnemy.IsObjectDestroyed())
+            {
+                target = null;
+                currentEnemy = null;
+                return;
+            }
             tempSeconds += Time.deltaTime;
             if (tempSeconds > timeToShoot)
             {
+                
                 Shoot();
                 tempSeconds = 0;
             }
@@ -56,6 +62,7 @@ public class Cannon : MonoBehaviour
         if (hits.Length > 0)
         {
             target = hits[0].transform;
+            currentEnemy = target.gameObject.GetComponent<Enemy>();
         }
     }
 
@@ -69,16 +76,11 @@ public class Cannon : MonoBehaviour
             targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
-    }
-
     void Shoot()
     {   
         GameObject bulletObj = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         bulletScript.SetTarget(target);
+        PlaySound(sounds[0], volume: 1f);
     }
 }

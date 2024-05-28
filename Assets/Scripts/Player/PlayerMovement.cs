@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Sounds, IPausablePlayer
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float lerpTime;
-
 
     private Rigidbody2D rigidBody;
     private Animator animator;
     private Vector2 inputVector;
     private Vector2 lerpInputVector;
+    private bool isPaused = false;
 
     private void Awake()
     {
@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
+
         inputVector.Normalize();
         lerpInputVector = Vector2.Lerp(lerpInputVector, inputVector, Time.deltaTime * lerpTime);
         rigidBody.velocity = lerpInputVector * playerSpeed;
@@ -33,4 +38,20 @@ public class PlayerMovement : MonoBehaviour
     {
         inputVector = context.ReadValue<Vector2>();
     }
+
+    public void Pause()
+    {
+        isPaused = true;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+    }
+
+    public void PlayOneStep()
+    {
+        PlaySound(sounds[0], volume: 0.35f);
+    }
+
 }
