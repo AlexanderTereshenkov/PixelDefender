@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TextPrinter : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class TextPrinter : MonoBehaviour
     {
         if (index >= textLines.Length)
         {
-            Debug.Log("END OF TEXT");
+            SceneManager.LoadScene(2);
             return;
         }
         if (isDialogShown)
