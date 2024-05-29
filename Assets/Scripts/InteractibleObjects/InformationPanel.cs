@@ -10,4 +10,9 @@ public class InformationPanel : MonoBehaviour
         infoText.text = text;
     }
 
+    public void HideHint()
+    {
+        infoText.text = string.Empty;
+    }
+
 }

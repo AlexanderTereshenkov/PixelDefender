@@ -24,6 +24,7 @@ public class BaseCannon : MonoBehaviour, IInteractible
             inventory.Wood -= woodPrice;
             GameObject cannonToCreate = CannonManager.main.GetCannon();
             cannon = Instantiate(cannonToCreate, transform.position, Quaternion.identity);
+            SingleGameEnterPoint.instance.GetMissionManager().MissionCompleted(1);
         }
     }
 }

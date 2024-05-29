@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MainGameplayObject : BreakableObject, IHint
+public class MainGameplayObject : BreakableObject
 {
     private bool isBroken = false;
 

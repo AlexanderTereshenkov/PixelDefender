@@ -71,6 +71,10 @@ public class MobSpapwner : MonoBehaviour
     {
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
+        if(days == 0)
+        {
+            SingleGameEnterPoint.instance.GetMissionManager().SetUpMission(0);
+        }
     }
 
     private void EndWave()
@@ -78,6 +82,11 @@ public class MobSpapwner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave+=3;
+        if(days == 0)
+        {
+            SingleGameEnterPoint.instance.GetMissionManager().MissionCompleted(0);
+            SingleGameEnterPoint.instance.GetMissionManager().SetUpMission(1);
+        }
         days++;
         OnDayPassed?.Invoke(days);
     }

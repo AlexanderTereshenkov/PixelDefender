@@ -10,6 +10,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Sprite monkeyPicture;
     [SerializeField] private Sprite standartPicture;
+    [SerializeField] private AudioClip standartMusic;
+    [SerializeField] private AudioClip monkeyMusic;
+    [SerializeField] private AudioSource backgroundMusic;
 
     private bool isFunnyPictureShown = false;
 
@@ -25,10 +28,14 @@ public class MainMenu : MonoBehaviour
         {
             backgroundImage.sprite = monkeyPicture;
             isFunnyPictureShown = true;
+            backgroundMusic.clip = monkeyMusic;
+            backgroundMusic.Play();
             return;
         }
         backgroundImage.sprite = standartPicture;
         isFunnyPictureShown = false;
+        backgroundMusic.clip = standartMusic;
+        backgroundMusic.Play();
     }
 
     public void PlayGame()

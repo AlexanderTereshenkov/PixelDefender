@@ -1,5 +1,6 @@
 
 public interface IHint
 {
-    public string GetInfo();
+    public void HintStatus(bool status);
+
 }

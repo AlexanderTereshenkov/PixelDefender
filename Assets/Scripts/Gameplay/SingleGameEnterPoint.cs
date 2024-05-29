@@ -25,6 +25,7 @@ public class SingleGameEnterPoint : MonoBehaviour
     [SerializeField] private WorldTime worldTime;
     [SerializeField] private Transform exitPoint;
     [SerializeField] private MobSpapwner mobSpawner;
+    [SerializeField] private MissionManager missionManager;
 
     private GameObject player;
     private Inventory playerInventory;
@@ -45,6 +46,7 @@ public class SingleGameEnterPoint : MonoBehaviour
 
         cameraMovement.transform.position = player.transform.position;
         cameraMovement.Target = player.transform;
+
 
         if(instance == null)
         {
@@ -86,6 +88,8 @@ public class SingleGameEnterPoint : MonoBehaviour
     public LampInsanityManager GetLampInsanityManager() => lampInsanityManager;
 
     public MobSpapwner GetMobSpawner() => mobSpawner;
+
+    public MissionManager GetMissionManager() => missionManager;
 
 
 }

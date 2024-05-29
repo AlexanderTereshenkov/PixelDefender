@@ -2,39 +2,16 @@ using UnityEngine;
 
 public class ShowHint : MonoBehaviour
 {
-    [SerializeField] private MainGameplayObject hintInfoObject;
-    [SerializeField] private InformationPanel informationPanel;
+    [SerializeField] private InformationPanel pannel;
+    [SerializeField] private string message;
 
-    private void OnEnable()
+    private void OnMouseEnter()
     {
-        hintInfoObject.OnValueChanged += UpdateValue;
+        pannel.ShowHint(message);
     }
 
-    private void OnDisable()
+    private void OnMouseExit()
     {
-        hintInfoObject.OnValueChanged -= UpdateValue;
+        pannel.HideHint();
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.TryGetComponent(out PlayerMovement playerMovement))
-        {
-            informationPanel.gameObject.SetActive(true);
-            informationPanel.ShowHint(hintInfoObject.GetInfo());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out PlayerMovement playerMovement))
-        {
-            informationPanel.gameObject.SetActive(false);
-        }
-    }
-
-    private void UpdateValue()
-    {
-        informationPanel.ShowHint(hintInfoObject.GetInfo());
-    }
-
 }
